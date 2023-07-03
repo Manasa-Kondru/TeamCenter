@@ -1,0 +1,20 @@
+.fcolor {
+    color: #0D2C72;
+}
+
+:host ::ng-deep {
+    .mdc-list-item__primary-text {
+        color: #0D2C72 !important;
+        font-weight: bold;
+    }
+}
+
+.rounded {
+    width: 100% !important;
+    height: 2.5rem !important;
+    margin-top: 2%;
+    border-radius: 25px;
+    color: #0D2C72 !important;
+    font-weight: bold;
+
+}

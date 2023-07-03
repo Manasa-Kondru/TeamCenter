@@ -1,0 +1,41 @@
+.flipped-image {
+    transform: rotate(90deg); 
+  }
+  .mat-expansion-panel-header-description
+  {
+    flex-grow:0 ;
+  
+  }
+  .custombtn
+  {
+    width: 91px;
+    height: 29px;
+    background: #266ED5 ;
+    border-radius: 12px;
+    opacity: 1;
+    color: white;
+    font-weight: 2px;
+   padding-bottom: 1em ;
+    margin:2px;
+  }
+  button
+  {
+border:none;
+outline: none;
+  }
+  .flipped-image1 {
+    transform: scaleX(-1); 
+  }
+  .mat-icon
+  {
+    overflow: visible;
+  }
+  .rounded
+{ 
+   width: 100% !important;
+  height: 2.5rem !important ;
+   margin-top: 2%;
+  
+   border-radius: 25px;
+ 
+}

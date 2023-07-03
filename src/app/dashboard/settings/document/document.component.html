@@ -1,0 +1,31 @@
+<team-center-search display_txt="Search here for Documents "></team-center-search>
+
+<mat-toolbar class="rounded bg-white my-3  d-flex justify-content-between fs-6 ">
+  <div><mat-icon svgIcon="farrow" class=" flipped-image" routerLink="../settingsmenu"></mat-icon><span class="mx-2">Document Category</span></div>
+
+</mat-toolbar>
+
+<mat-list class="bg-white h-100  " >
+    <mat-list-item  > 
+
+          <mat-form-field class="pt-3 ">
+            <mat-label>Document Type</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let d of doc" [value]="d.value">
+                {{d.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- <input type="text" > -->
+
+          <mat-form-field class="example-full-width mx-5 px-5">
+            <mat-label>Add name to document</mat-label>
+            <input matInput>
+          </mat-form-field>
+
+         <button class="btn btn-primary px-4 ">Upload</button>
+        
+        
+    </mat-list-item>
+  </mat-list>

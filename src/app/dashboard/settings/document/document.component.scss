@@ -1,0 +1,40 @@
+.rounded
+{ 
+   width: 100% !important;
+  height: 2.5rem !important ;
+//    margin-top: 2%;
+  
+   border-radius: 25px;
+ 
+}
+// :host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+//     color:green;
+//     }
+
+
+.mat-icon
+{
+    overflow: visible;
+}
+.flipped-image {
+    transform: scaleX(-1); 
+  }
+
+  .example-additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
+  }
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: fit-content;
+  }
+  
+  .example-full-width {
+    width: fit-content;
+  }
+  
+
+  
+  

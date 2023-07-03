@@ -1,0 +1,134 @@
+
+<team-center-search display_txt="Search here... "></team-center-search>
+
+<mat-toolbar class="rounded bg-white mb-3  d-flex justify-content-between fs-6 ">
+  <div><mat-icon svgIcon="farrow" class=" flipped-image1" routerLink="../productdata"></mat-icon><span class="mx-2">Edge</span></div>
+
+ 
+</mat-toolbar>
+
+
+<mat-accordion>
+    <mat-expansion-panel (opened)="f_panelOpenState = true" (closed)="f_panelOpenState = false" hideToggle class="mt-1">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Firmware
+            </mat-panel-title>
+            <mat-panel-description class="text-end">
+                <mat-icon svgIcon="farrow" *ngIf="!f_panelOpenState"></mat-icon>
+                <mat-icon svgIcon="farrow" *ngIf="f_panelOpenState" class="flipped-image"></mat-icon>
+            </mat-panel-description>
+   
+        </mat-expansion-panel-header>
+        <table class="table ">
+            <tr>
+                <th>
+                    Version
+                </th>
+                <th>
+                    Released Date
+                </th>
+                <th>
+                    Releasedby
+                </th>
+                <th>
+                    Download
+                </th>
+            </tr>
+            <tr *ngFor="let p of product">
+                <td>{{p.Version}}</td>
+                <td>{{p.Released_date}}</td>
+                <td>{{p.Released_by}}</td>
+                <td><button class="custombtn">Download</button></td>
+            </tr>
+        </table>
+
+    </mat-expansion-panel>
+
+    <!-- 2 -->
+
+    <mat-expansion-panel (opened)="d_panelOpenState = true" (closed)="d_panelOpenState = false" hideToggle class="mt-1">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Documents
+            </mat-panel-title>
+            <mat-panel-description>
+                <mat-icon svgIcon="farrow" *ngIf="!d_panelOpenState"></mat-icon>
+                <mat-icon svgIcon="farrow" *ngIf="d_panelOpenState" class="flipped-image"></mat-icon>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <table class="table ">
+            <tr>
+                <th>
+                    Version
+                </th>
+                <th>
+                    Released Date
+                </th>
+                <th>
+                    Releasedby
+                </th>
+                <th>
+                    Download
+                </th>
+            </tr>
+            <tr *ngFor="let p of product">
+                <td>{{p.Version}}</td>
+                <td>{{p.Released_date}}</td>
+                <td>{{p.Released_by}}</td>
+                <td><button class="custombtn">Download</button></td>
+            </tr>
+        </table>
+    </mat-expansion-panel>
+    <!-- 3 -->
+    <mat-expansion-panel (opened)="a_panelOpenState = true" (closed)="a_panelOpenState = false" hideToggle class="mt-1">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Apps
+            </mat-panel-title>
+            <mat-panel-description>
+                <mat-icon svgIcon="farrow" *ngIf="!a_panelOpenState"></mat-icon>
+                <mat-icon svgIcon="farrow" *ngIf="a_panelOpenState" class="flipped-image"></mat-icon>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+
+        <mat-expansion-panel panelOpenState="false" hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <table class="table">
+                        <tr>
+                            <th>File Name</th>
+                            <th>Released Date</th>
+                            <th>Released by</th>
+                            <th>Download</th>
+                        </tr>
+                    </table>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" *ngFor="let a of app"
+            hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <table class="table ">
+                        <tr>
+                            <td class="text-start">{{a.file_name}}</td>
+                            <td class="d-flex justify-content-left">{{a.releaseddate}}</td>
+                            <td>{{a.Releasedby}}</td>
+                        </tr>
+                    </table>
+                </mat-panel-title>
+                <mat-panel-description>
+                    <button class="btn btn-primary">View</button>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <img src="../assets/images/QR.png" class="mx-auto h-25 w-25 d-block">
+        </mat-expansion-panel>
+
+
+
+    </mat-expansion-panel>
+</mat-accordion>

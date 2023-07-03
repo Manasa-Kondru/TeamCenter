@@ -1,0 +1,61 @@
+<mat-drawer-container class="example-container bg-info ">
+
+    <mat-drawer mode="side" opened class="bg-primary mdrawer">
+
+        <div class="text-center"><img src="../assets/images/no profile.png" class="rounded-circle w-25  mt-5 "
+                alt="Person Image">
+        </div>
+        <div class="text-center text-white px-4 py-3 text-nowrap">
+            <P>Kondru Manasa<br>Web Technologies<br>manasa@blazeautomation.com</P>
+        </div>
+
+        <div class="d-flex flex-column ">
+
+            <div class="p-4 px-5 text-nowrap cursor-pointer" [ngClass]="p.isActive?'active':'inactive'" routerLink="./projects"
+                routerLinkActive="active" #p="routerLinkActive">
+                <mat-icon svgIcon="project"></mat-icon>
+                <span class=" px-4"> Projects</span>
+            </div>
+            <div class="p-4 px-5 text-nowrap cursor-pointer" [ngClass]="u.isActive?'active':'inactive'" routerLinkActive="active"
+                #u="routerLinkActive" routerLink="./users" >
+                <mat-icon svgIcon="users"></mat-icon>
+                <span class="px-4 ">Users</span>
+            </div>
+            <div class="p-4 px-5 text-nowrap cursor-pointer" [ngClass]="s.isActive?'active':'inactive'" routerLinkActive="active"
+                #s="routerLinkActive" routerLink="./settings" >
+                <mat-icon svgIcon="settings" styles=""></mat-icon>
+                <span class="px-4 ">Settings</span>
+            </div>
+            <div class="p-4 px-5 inactive text-nowrap cursor-pointer" routerLink="/auth"> <mat-icon svgIcon="logout"></mat-icon>
+                <span class="px-4 ">Logout</span>
+            </div>
+
+
+        </div>
+
+    </mat-drawer>
+
+    <mat-drawer-content class="container fex" >
+        <div class="row " >
+            <div class="col-9 ">
+
+
+                <div><router-outlet></router-outlet></div>
+
+            </div>
+
+            <div class="col-3   my-3 " style="border:15px solid white;height: 95vh;border-radius: 4%;">
+                <h3 class="recent text-primary text-center">Recents</h3>
+                <div class="ln"></div>
+                <div   *ngFor="let r of recents">
+                    <small >{{r.Name}}</small><br>
+                    <small >{{r.version}}</small><br>
+                    <small>{{r.date}}</small><br>
+                    <small>{{r.time}}<button class="btn btn-primary mx-4 px-4 py-0" >View</button></small>
+                    <div class=" my-1 line" ></div>
+                </div>
+            </div>
+        </div>
+    </mat-drawer-content>
+
+</mat-drawer-container>
