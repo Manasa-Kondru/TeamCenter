@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AddProductComponent } from '../add-product/add-product.component';
 
 @Component({
   selector: 'team-center-productdata',
@@ -6,6 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./productdata.component.scss']
 })
 export class ProductdataComponent {
+
+
+  constructor(private matdialog:MatDialog)
+{
+
+}
+
+addProduct()
+{
+  this.matdialog.open(AddProductComponent)
+}
 
   displayedColumns: string[] = ['products', 'onboardingtime', 'createdby','view'];
   dataSource = ELEMENT_DATA;

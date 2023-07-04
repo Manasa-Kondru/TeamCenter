@@ -1,10 +1,10 @@
-
 <team-center-search display_txt="Search here... "></team-center-search>
 
 <mat-toolbar class="rounded bg-white mb-3  d-flex justify-content-between fs-6 ">
-  <div><mat-icon svgIcon="farrow" class=" flipped-image1" routerLink="../productdata"></mat-icon><span class="mx-2">Edge</span></div>
+    <div><mat-icon svgIcon="farrow" class=" flipped-image1" routerLink="../productdata"></mat-icon><span
+            class="mx-2">Edge</span></div>
 
- 
+
 </mat-toolbar>
 
 
@@ -18,22 +18,14 @@
                 <mat-icon svgIcon="farrow" *ngIf="!f_panelOpenState"></mat-icon>
                 <mat-icon svgIcon="farrow" *ngIf="f_panelOpenState" class="flipped-image"></mat-icon>
             </mat-panel-description>
-   
+
         </mat-expansion-panel-header>
         <table class="table ">
             <tr>
-                <th>
-                    Version
-                </th>
-                <th>
-                    Released Date
-                </th>
-                <th>
-                    Releasedby
-                </th>
-                <th>
-                    Download
-                </th>
+                <th>Version </th>
+                <th> Released Date</th>
+                <th> Releasedby</th>
+                <th> Download</th>
             </tr>
             <tr *ngFor="let p of product">
                 <td>{{p.Version}}</td>
@@ -59,18 +51,10 @@
         </mat-expansion-panel-header>
         <table class="table ">
             <tr>
-                <th>
-                    Version
-                </th>
-                <th>
-                    Released Date
-                </th>
-                <th>
-                    Releasedby
-                </th>
-                <th>
-                    Download
-                </th>
+                <th>Version </th>
+                <th> Released Date</th>
+                <th> Releasedby</th>
+                <th> Download</th>
             </tr>
             <tr *ngFor="let p of product">
                 <td>{{p.Version}}</td>
@@ -127,8 +111,5 @@
             </mat-expansion-panel-header>
             <img src="../assets/images/QR.png" class="mx-auto h-25 w-25 d-block">
         </mat-expansion-panel>
-
-
-
     </mat-expansion-panel>
 </mat-accordion>

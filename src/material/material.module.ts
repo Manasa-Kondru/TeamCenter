@@ -10,7 +10,8 @@ import {MatListModule} from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 export const matmodules: any =
-    [MatSelectModule,MatDividerModule,MatListModule,FormsModule,MatIconModule, MatCardModule, MatInputModule, MatFormFieldModule, MatSidenavModule, MatToolbarModule, MatTableModule, MatExpansionModule];
+    [MatDialogModule,MatSelectModule,MatDividerModule,MatListModule,FormsModule,MatIconModule, MatCardModule, MatInputModule, MatFormFieldModule, MatSidenavModule, MatToolbarModule, MatTableModule, MatExpansionModule];

@@ -3,7 +3,7 @@
 <mat-toolbar class="rounded bg-white my-3  d-flex justify-content-between fs-6 ">
   <span class="mx-2">Users</span>
 
-  <div class="btn btn-primary h-25 pb-4 "> Add User</div>
+  <div class="btn btn-primary h-25 pb-4 " (click)="addUser()"> Add User</div>
 </mat-toolbar>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">

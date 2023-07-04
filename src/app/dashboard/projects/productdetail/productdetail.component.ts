@@ -1,11 +1,17 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'team-center-productdetail',
   templateUrl: './productdetail.component.html',
   styleUrls: ['./productdetail.component.scss']
 })
 export class ProductdetailComponent {
+
+
+
+
+
   f_panelOpenState = false;
   a_panelOpenState = false;
   d_panelOpenState = false;

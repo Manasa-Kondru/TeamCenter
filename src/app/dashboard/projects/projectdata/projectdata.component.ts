@@ -1,4 +1,6 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AddClientComponent } from '../add-client/add-client.component';
 
 
 @Component({
@@ -16,6 +18,15 @@ export class ProjectdataComponent {
     let data: any = [...ELEMENT_DATA];
     data = data.filter((ele: any) => { let val: any = (ele.client).toLowerCase(); return val.includes((event).toLowerCase()); });
     this.dataSource = [...data];
+  }
+
+  constructor(private matdialog:MatDialog)
+  {
+
+  }
+  addClient()
+  {
+    this.matdialog.open(AddClientComponent);
   }
 
 }

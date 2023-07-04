@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'team-center-login',
@@ -10,17 +12,23 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   errormsg = false;
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  constructor(private fb:FormBuilder, private route:Router)
+  constructor(private fb:FormBuilder, private route:Router,private service:AuthService,private http:HttpClient)
   {
 
   }
 
   routeTo() {
-    if (this.emailFormControl.value =='manasakondru5@gmail.com') {
-      this.route.navigate(['auth/otp']);
-    } else {
-      this.errormsg = true;
-    }
-  }
-  
+
+     this.service.verifyLogin(this.emailFormControl.value).subscribe((res:any)=>
+     {
+      if(res.status == 1)
+      {
+        localStorage.setItem("scode", res.code);
+        this.route.navigate(['auth/otp']);
+      }
+     })
+
+  //     this.route.navigate(['auth/otp']);
+
+  } 
 }

@@ -10,6 +10,8 @@ import { ProductdataComponent } from './productdata/productdata.component';
 import { matmodules } from 'src/material/material.module';
 import { ProductdetailComponent } from './productdetail/productdetail.component';
 import { UbiquitousModule } from 'src/app/ubiquitous/ubiquitous.module';
+import { AddClientComponent } from './add-client/add-client.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 
 
@@ -19,7 +21,9 @@ import { UbiquitousModule } from 'src/app/ubiquitous/ubiquitous.module';
   
     LayoutComponent,
     ProductdataComponent,
-    ProductdetailComponent
+    ProductdetailComponent,
+    AddClientComponent,
+    AddProductComponent
   ],
   imports: [
     CommonModule,

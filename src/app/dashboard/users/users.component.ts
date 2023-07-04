@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AddUserComponent } from '../add-user/add-user.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'team-center-users',
@@ -6,6 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent {
+
+  constructor( private matdialog: MatDialog)
+  {
+
+  }
+  addUser()
+  {
+    this.matdialog.open(AddUserComponent)
+  }
+
+
   displayedColumns: string[] = ['name', 'role', 'email'];
   dataSource = ELEMENT_DATA;
 
