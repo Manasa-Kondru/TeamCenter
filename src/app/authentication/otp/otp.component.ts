@@ -45,15 +45,23 @@ export class OtpComponent {
 
   verify() {
     let otp_code: any = this.otp.controls.t1.value + this.otp.controls.t2.value +
-     this.otp.controls.t3.value + this.otp.controls.t4.value + this.otp.controls.t5.value + this.otp.controls.t6.value;
+      this.otp.controls.t3.value + this.otp.controls.t4.value + this.otp.controls.t5.value + this.otp.controls.t6.value;
     console.log(otp_code);
 
-    this.service.verifyOtp({otp:otp_code, scode: this.tempcode}).subscribe((res: any) => {
+    this.service.verifyOtp({ otp: otp_code, scode: this.tempcode }).subscribe((res: any) => {
       if (res.status == 1) {
-        // localStorage.setItem("scode", res.scode);
+        localStorage.setItem("token", res.token);
         this.router.navigate(['auth/congrats']);
       }
     })
+  }
+
+  resend()
+  {
+    console.log(this.tempcode);
+    this.service.resendOTP({code:this.tempcode}).subscribe((res:any)=>{
+      console.log(res);
+    });
   }
 
 }

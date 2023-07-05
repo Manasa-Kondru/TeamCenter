@@ -12,6 +12,7 @@ import { ProductdetailComponent } from './productdetail/productdetail.component'
 import { UbiquitousModule } from 'src/app/ubiquitous/ubiquitous.module';
 import { AddClientComponent } from './add-client/add-client.component';
 import { AddProductComponent } from './add-product/add-product.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -29,7 +30,8 @@ import { AddProductComponent } from './add-product/add-product.component';
     CommonModule,
     ProjectsRoutingModule,
     ...matmodules,
-    UbiquitousModule
+    UbiquitousModule,
+    ReactiveFormsModule
   ]
 })
 export class ProjectsModule { }

@@ -1,7 +1,11 @@
+
+<form [formGroup]="addClient">
 <div class="fs-5 text-primary text-center pt-3 "><strong>ADD CLIENT</strong> </div>
-<div class="m-5 ">
-    <h6>Clients:</h6> <input type="text" class="form-control m-2">
-    <h6>OnBardingTime:</h6> <input type="text" class="form-control m-2">
-    <h6>No.of.Products:</h6><input type="text" class="form-control m-2">
+<div class="mx-5 my-3 ">
+    <h6>Clients:</h6> <input type="text" class="form-control m-2" [(ngModel)]="cname" formControlName="clientname">
+   
+    <h6>No.of.Products:</h6><input type="text" class="form-control m-2" [(ngModel)]="noOfProducts" formControlName="nfproducts">
+    <div class="text-center mt-4"><button (click)="sendclient()" class="btn btn-primary "> Submit</button></div>
 </div>
+</form>
 

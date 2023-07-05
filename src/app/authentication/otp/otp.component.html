@@ -9,6 +9,24 @@
     <input type="text" class="box" maxlength="1" #t5 (keyup)="move($event,t4,t5,t6)" formControlName="t5">
     <input type="text" class="box" maxlength="1" #t6 (keyup)="move($event,t5,t6,'')" formControlName="t6">
 </div>
-<div class="resend pb-2">Resend OTP</div>
+<mat-error *ngIf=" otp.get('t6')?.touched && otp.get('t6')?.hasError('required')">
+    OTP is <strong>required</strong>
+  </mat-error>
+  <!-- <mat-error *ngIf="otp.get('t2')?.hasError('required')">
+    OTP is <strong>required</strong>
+  </mat-error>
+  <mat-error *ngIf="otp.get('t3')?.hasError('required')">
+    OTP is <strong>required</strong>
+  </mat-error>
+  <mat-error *ngIf="otp.get('t4')?.hasError('required')">
+    OTP is <strong>required</strong>
+  </mat-error>
+  <mat-error *ngIf="otp.get('t5')?.hasError('required')">
+    OTP is <strong>required</strong>
+  </mat-error>
+  <mat-error *ngIf="otp.get('t6')?.hasError('required')">
+    OTP is <strong>required</strong>
+  </mat-error> -->
+<div class="resend pb-2"  style="cursor: pointer;" (click)="resend()">Resend OTP</div>
 <div class="btn btn-primary btn-inside" (click)="verify()">Verify</div>
 </form>

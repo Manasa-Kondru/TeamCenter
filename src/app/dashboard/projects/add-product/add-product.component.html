@@ -1,6 +1,8 @@
+<form [formGroup]="addProduct">
 <div class="text-center text-primary fs-5"><strong>ADD PRODUCT</strong></div>
 <div class="m-5">
-    <h6>Products:</h6><input type="text" class="form-control m-3">
-    <h6>OnBoardingTime:</h6><input type="text" class="form-control m-3">
-    <h6>CreatedBy:</h6><input type="text" class="form-control m-3">
+    <h6>Products:</h6><input type="text" class="form-control m-3" [(ngModel)]="pname" formControlName="product">
+    <h6>OnBoardingTime:</h6><input type="text" class="form-control m-3" [(ngModel)]="boardtime" formControlName="boardingtime">
+    <h6>CreatedBy:</h6><input type="text" class="form-control m-3" [(ngModel)]="createdby" formControlName="createdingby">
 </div>
+</form>
