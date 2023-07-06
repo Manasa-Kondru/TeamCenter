@@ -12,6 +12,9 @@ export class AddUserComponent {
   uname:any;
   role:any;
   email_id:any;
+  user_type: any;
+  // photo:File;
+  utype:any;
   constructor(private dialogRef:MatDialogRef<AddUserComponent>,private service:AuthService){
 
   }
@@ -20,6 +23,7 @@ export class AddUserComponent {
     username: new FormControl('', [Validators.required]),
     role: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required]),
+    usertype: new FormControl('', [Validators.required]),
   })
 
 

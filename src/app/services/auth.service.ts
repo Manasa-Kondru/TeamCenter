@@ -26,34 +26,35 @@ export class AuthService {
   }
 
   resendOTP(scode_value: any) {
-    return this.httpClient.post(`${this.url}/api/otp/resend`,  scode_value );
+    return this.httpClient.post(`${this.url}/api/otp/resend`, scode_value);
   }
 
-  clientData(token: any)
-  {
+  clientData(token: any) {
     let tokenValue: any = `Bearer ${token}`;
     return this.httpClient.get(`${this.url}/api/clients`, { headers: { Authorization: tokenValue } })
   }
 
- productData(token:any,id:any)
- {
-  let tokenValue: any = `Bearer ${token}`;
-  return this.httpClient.get(`${this.url}/api/products`+ id+ '/products', { headers: { Authorization: tokenValue } })
- }
+  productData(token: any, id: any) {
+    let tokenValue: any = `Bearer ${token}`;
+    return this.httpClient.get(`${this.url}/api/products`+id+`add-product`, { headers: { Authorization: tokenValue } })
+  }
 
- userSender(obj:any)
- {
-  return this.httpClient.post(`${this.url}/api/otp/users/addUser`,  obj );
- }
+  userSender(obj: any) {
+    return this.httpClient.post(`${this.url}/api/addUser`, obj);
+  }
 
- clientSender(obj:any)
- {
-  return this.httpClient.post(`${this.url}/api/otp/users/addClient`,  obj );
- }
- productSender(obj:any)
- {
-  return this.httpClient.post(`${this.url}/api/otp/users/addProduct`,  obj );
- }
+
+
+  clientSender(obj: any, token: any) {
+    let tokenValue: any = `Bearer ${token}`;
+    return this.httpClient.post(`${this.url}/api/clients/add-client`, obj, { headers: { Authorization: tokenValue } });
+  }
+
+
+
+  productSender(obj: any) {
+    return this.httpClient.post(`${this.url}/api/otp/users/addProduct`, obj);
+  }
 
 
 
