@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from 'src/app/services/auth.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,8 +12,64 @@ import { Component } from '@angular/core';
 })
 export class ProductdetailComponent {
 
+  allData: any = [];
+  displayedColumns: string[] = ['doc_type', 'released_date', 'released_by', ' '];
+  dataSource: any;
+
+  constructor(private matdialog: MatDialog, private service: AuthService, private router: Router) {
+    let url: any = this.router.url.split('/');
+ 
+    let no = parseInt(url[3])
+    this.displayProduct(no);
+
+  }
+
+  ngOnInit(): void {
+    this.displayDocs();
+   
+
+  }
 
 
+  data: any = [];
+  element: any;
+
+  url: any = this.router.url.split('/');
+  number = parseInt(this.url[3])
+ 
+
+
+  displayProduct(id: any): void {
+
+
+    this.service.productData(id).subscribe((res: any) => {
+
+      this.data = res.products;
+
+    })
+  }
+
+
+
+  async displayDocs() {
+
+    this.allData = await this.getDoc();
+    this.dataSource = new MatTableDataSource([...this.allData]);
+  }
+
+
+  getDoc() {
+    return new Promise((resolve: any) => {
+      this.service.getDocData().subscribe((res: any) => {
+        if (res.status == 1) {
+          resolve(res.documents);
+        }
+        else
+          resolve([])
+
+      })
+    })
+  }
 
 
   f_panelOpenState = false;
@@ -17,41 +77,14 @@ export class ProductdetailComponent {
   d_panelOpenState = false;
   panelOpenState = false;
 
-  app:any[]=
-  [
-    {
-      file_name:"xxxxxxx",releaseddate:"April 14 at 10:04 am",Releasedby:"Nagendra Mudadla"
-    },
-    {
-      file_name:"xxxxxxx",releaseddate:"April 12 at 11:04 am",Releasedby:"Abhishek Madala"
-    },
-    {
-      file_name:"xxxxxxx",releaseddate:"April 10 at 10:31 am",Releasedby:"Rajesh Balumuri"
-    },
-    {
-      file_name:"xxxxxxx",releaseddate:"April 8 at 11:04 am",Releasedby:"Naresh vadlani"
-    },
-    {
-      file_name:"xxxxxxx",releaseddate:"April 5 at 11:36 am",Releasedby:"Roja Dundigalla"
-    }
-  ]
 
-  product:any[]=
-  [
-    {
-      Version:"xxxxxxxxx",Released_date:"April 14 at 10:04 am",Released_by:"Abhilash Dhammughari"
-    },
-    {
-      Version:"xxxxxxxxx",Released_date:"April 14 at 10:04 am",Released_by:"Abhilash Dhammughari"
-    },
-    {
-      Version:"xxxxxxxxx",Released_date:"April 14 at 10:04 am",Released_by:"Abhilash Dhammughari"
-    },
-    {
-      Version:"xxxxxxxxx",Released_date:"April 14 at 10:04 am",Released_by:"Abhilash Dhammughari"
-    },
-    {
-      Version:"xxxxxxxxx",Released_date:"April 14 at 10:04 am",Released_by:"Abhilash Dhammughari"
-    },
-  ]
+  // @Input()
+  // product_name!: string;
+  // productname="";
+
+  //  product_name()
+  //  {
+
+  //  }
+
 }

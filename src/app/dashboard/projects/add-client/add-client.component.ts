@@ -29,8 +29,8 @@ export class AddClientComponent {
 
   sendClient() {
     let obj: any = { "client_name": this.cname, "no_of_products": this.noOfProducts };
-    let token: any = localStorage.getItem("token");
-    this.service.clientSender(obj,token).subscribe((res: any) => {
+  
+    this.service.clientSender(obj).subscribe((res: any) => {
       if (res.status === 1) {
         this.dialogRef.close();
       }

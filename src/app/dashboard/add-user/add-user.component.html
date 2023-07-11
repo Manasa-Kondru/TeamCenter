@@ -1,6 +1,6 @@
 <form [formGroup]="addUser" >
 
-    <div class="text-center text-primary fs-5 ">
+    <div class="text-center text-primary fs-5 mt-3  ">
         ADD USER
     </div>
     <div class="m-3 p-3">
@@ -12,7 +12,10 @@
         Role:<input type="text" class="form-control px-5 mb-2" [(ngModel)]="role" formControlName="role">
         Email:<input type="email" class="form-control px-5 mb-2" [(ngModel)]="email_id" formControlName="email">
         UserType:<input type="email" class="form-control px-5 mb-2" [(ngModel)]="utype" formControlName="usertype">
-        Upload Image:<input type="file" class="form-control px-5 mt-1" >
+        Upload Image:<input type="file" class="form-control px-5 mt-1"  (change)="onPhotoSelected($event)">
     </div> 
-    <div class="text-center mb-4 mt-2"><button (click)="sendUser()" class="btn btn-primary "> Submit</button></div>
+    <div class="text-center ">
+   <button mat-dialog-close="true" class="btn btn-danger mx-5 my-3"> Close</button>
+   <button (click)="sendUser()" class="btn btn-success mx-5 my-3"> Submit</button>
+</div>
 </form>

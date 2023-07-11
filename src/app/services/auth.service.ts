@@ -9,6 +9,7 @@ export class AuthService {
   constructor(private httpClient: HttpClient) { }
   url = "http://192.168.100.18:5000";
 
+  token: any = 'Bearer' + ' ' + localStorage.getItem("token");
 
   verifyLogin(emailid: any) {
     return this.httpClient.post(`${this.url}/api/otp/send`, { email: emailid });
@@ -20,42 +21,42 @@ export class AuthService {
 
   }
 
-  userData(token: any) {
-    let tokenValue: any = `Bearer ${token}`;
-    return this.httpClient.get(`${this.url}/api/users`, { headers: { Authorization: tokenValue } })
+  userData() {
+    return this.httpClient.get(`${this.url}/api/users`, { headers: { Authorization: this.token } })
   }
 
   resendOTP(scode_value: any) {
     return this.httpClient.post(`${this.url}/api/otp/resend`, scode_value);
   }
 
-  clientData(token: any) {
-    let tokenValue: any = `Bearer ${token}`;
-    return this.httpClient.get(`${this.url}/api/clients`, { headers: { Authorization: tokenValue } })
+  clientData() {
+    return this.httpClient.get(`${this.url}/api/clients`, { headers: { Authorization: this.token } })
   }
 
-  productData(token: any, id: any) {
-    let tokenValue: any = `Bearer ${token}`;
-    return this.httpClient.get(`${this.url}/api/products`+id+`add-product`, { headers: { Authorization: tokenValue } })
+  productData(id: any) {
+    return this.httpClient.get(`${this.url}/api/products/${id}`, { headers: { Authorization: this.token } })
   }
 
   userSender(obj: any) {
-    return this.httpClient.post(`${this.url}/api/addUser`, obj);
+    return this.httpClient.post(`${this.url}/api/addUser`, obj, { headers: { Authorization: this.token } });
+  }
+
+  clientSender(obj: any) {
+    return this.httpClient.post(`${this.url}/api/clients/add-client`, obj, { headers: { Authorization: this.token } });
   }
 
 
-
-  clientSender(obj: any, token: any) {
-    let tokenValue: any = `Bearer ${token}`;
-    return this.httpClient.post(`${this.url}/api/clients/add-client`, obj, { headers: { Authorization: tokenValue } });
+  productSender(id: any, obj: any) {
+    return this.httpClient.post(`${this.url}/api/products/${id}/add-product`, obj, { headers: { Authorization: this.token } });
   }
 
-
-
-  productSender(obj: any) {
-    return this.httpClient.post(`${this.url}/api/otp/users/addProduct`, obj);
+  getDocData() {
+    return this.httpClient.get(`${this.url}/api/documents`, { headers: { Authorization: this.token } })
   }
 
-
+getNavInfo()
+{
+  return this.httpClient.get(`${this.url}/api/users-details`, { headers: { Authorization: this.token } })
+}
 
 }

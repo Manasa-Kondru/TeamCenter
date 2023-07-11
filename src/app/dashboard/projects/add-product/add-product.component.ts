@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class AddProductComponent {
   pname:any;
   boardtime:any;
   createdby:any;
-  constructor(private dialogRef:MatDialogRef<AddProductComponent>,private service:AuthService){
+  constructor(private dialogRef:MatDialogRef<AddProductComponent>,private service:AuthService,private router:Router){
 
   }
 
@@ -22,12 +23,24 @@ export class AddProductComponent {
     creatingby: new FormControl('', [Validators.required]),
   })
 
-
+error:any=false;
+errmsg:any;
 
   sendProduct()
   {
+    // let id:any;
+    
+    let url: any = this.router.url.split('/');
     let obj:any = {"product_name":this.pname,"onBoarding_time":this.boardtime,"created_By":this.createdby};
-    this.service.productSender(obj);
+    this.service.productSender(parseInt(url[3]),obj).subscribe((res: any) => {
+      if (res.status === 1) {
+        this.dialogRef.close();
+      }
+      else {
+        this.error = "true";
+        this.errmsg = res.message;
+      }
+    });;
     console.log(obj);
   }
 

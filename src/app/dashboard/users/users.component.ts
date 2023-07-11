@@ -1,8 +1,9 @@
-import { Component , OnInit} from '@angular/core';
+import { Component , OnInit, ViewChild} from '@angular/core';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'team-center-users',
@@ -14,6 +15,10 @@ allData: any = [];
 displayedColumns: string[] = ['name', 'role', 'email','utype'];
 dataSource: any;
 
+
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+
   constructor(private matdialog: MatDialog, private service: AuthService) { }
     
     ngOnInit(): void {
@@ -21,15 +26,33 @@ dataSource: any;
     }
 
 async  displayUsers() {
-    let token: any = localStorage.getItem("token");
-this.allData = await this.getUser(token);
+   
+this.allData = await this.getUser();
 this.dataSource  =  new MatTableDataSource([...this.allData]);
+this.dataSource.paginator = this.paginator;
 }
  
 
+  getUser()
+  {
+    return new Promise((resolve:any)=>
+    {
+      this.service.userData().subscribe((res: any)=>
+        {
+          if(res.status==1)
+          {
+            resolve (res.users);
+            console.log(res);
+          }
+          else
+          resolve([])
+        
+       })
+    })
+  }
 
   addUser() {
-    this.matdialog.open(AddUserComponent)
+    this.matdialog.open(AddUserComponent,{disableClose:true,enterAnimationDuration:'200ms',exitAnimationDuration:'200ms'})
   }
 
   on_change(event: any) {
@@ -38,25 +61,6 @@ this.dataSource  =  new MatTableDataSource([...this.allData]);
     return (ele.name.toLowerCase()).includes(event) || (ele.email.toLowerCase().includes(event))
     });
     this.dataSource = [...data];
-  }
-
-
-
-  getUser(token:any)
-  {
-    return new Promise((resolve:any)=>
-    {
-      this.service.userData(token).subscribe((res: any)=>
-        {
-          if(res.status==1)
-          {
-            resolve (res.users);
-          }
-          else
-          resolve([])
-        
-       })
-    })
   }
 
 }

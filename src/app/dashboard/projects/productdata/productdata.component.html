@@ -1,7 +1,7 @@
 <team-center-search display_txt="Search here for Devices & Projects " (eventname)="on_change($event)"></team-center-search>
 
 <mat-toolbar class="rounded bg-white my-3  d-flex justify-content-between fs-6 ">
-  <div><mat-icon svgIcon="farrow" class=" flipped-image cursor-pointer" routerLink="../projectdata"></mat-icon><span class="mx-2">Products</span></div>
+  <div><mat-icon svgIcon="farrow" class=" flipped-image cursor-pointer" routerLink="../../projectdata"></mat-icon><span class="mx-2">Products</span></div>
 
   <div class="btn btn-primary h-25 pb-4 " (click)="addProduct()"> Add Product</div>
 </mat-toolbar>
@@ -16,7 +16,7 @@
 
   <ng-container matColumnDef="onboardingtime">
     <th mat-header-cell *matHeaderCellDef styles="color:grey"> On boarding time </th>
-    <td mat-cell *matCellDef="let element" class="txt-color"> {{element.onBoarding_time}} </td>
+    <td mat-cell *matCellDef="let element" class="txt-color"> {{element.onBoarding_time | date:'medium'}} </td>
   </ng-container>
 
 
@@ -28,8 +28,8 @@
 
   <ng-container matColumnDef="view">
     <th mat-header-cell *matHeaderCellDef styles="color:grey"> View </th>
-    <td mat-cell *matCellDef="let element"> <mat-icon class="text-end cursor-pointer" svgIcon="farrow"
-        routerLink="../productdetail"></mat-icon> </td>
+    <td mat-cell *matCellDef="let element"  routerLink="../productdetail" > <mat-icon class="text-end cursor-pointer" svgIcon="farrow"
+      ></mat-icon> </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

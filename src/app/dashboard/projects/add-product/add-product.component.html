@@ -1,8 +1,11 @@
 <form [formGroup]="addProduct">
 <div class="text-center text-primary fs-5"><strong>ADD PRODUCT</strong></div>
 <div class="m-5">
-    <h6>Products:</h6><input type="text" class="form-control m-3" [(ngModel)]="pname" formControlName="product">
-    <h6>OnBoardingTime:</h6><input type="text" class="form-control m-3" [(ngModel)]="boardtime" formControlName="boardingtime">
-    <h6>CreatedBy:</h6><input type="text" class="form-control m-3" [(ngModel)]="createdby" formControlName="createdingby">
+    <h6>Product:</h6><input type="text" class="form-control m-3" [(ngModel)]="pname" formControlName="product">
+    <div class="text-center">
+        <button mat-dialog-close="true" class="btn btn-danger mx-5 "> Close</button>
+        <button (click)="sendProduct()" class="btn btn-success mx-5"> Submit</button>
+    </div>
+
 </div>
 </form>

@@ -10,64 +10,32 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './projectdata.component.html',
   styleUrls: ['./projectdata.component.scss']
 })
+
 export class ProjectdataComponent {
 
-//   constructor(private matdialog:MatDialog, private service:AuthService)
-//   {
-// this.displayClients();
-//   }
- 
+  constructor(private matdialog: MatDialog, private service: AuthService) { }
 
-//   displayedColumns: string[] = ['client_name', 'on_boarding_time', 'no_of_products', ' '];
-//   dataSource:any;
-//   element:any;
-
-//   displayClients() {
-//     let token: any = localStorage.getItem("token");
-
-//     this.service.clientData(token).subscribe((res: any)=>
-//     {
-//       console.log(res);
-//       this.dataSource = res.clients;
-//       this.element =res;
-//     })
-//   }
-
-//   on_change(event: any) {
-//     let data: any = [...this.element];
-//     data = data.filter((ele: any) => { let val: any = (ele.client).toLowerCase(); return val.includes((event).toLowerCase()); });
-//     this.dataSource = [...data];
-//   }
-
- 
-//   addClient()
-//   {
-//     this.matdialog.open(AddClientComponent);
-//   }
-
-//   data : any=null ;
-
-
-  allData: any = [];
- displayedColumns: string[] = ['client_name', 'on_boarding_time', 'no_of_products', ' '];
+allData: any = [];
+displayedColumns: string[] = ['client_name', 'on_boarding_time', 'no_of_products', ' '];
 dataSource: any;
 
-  constructor(private matdialog: MatDialog, private service: AuthService) { }
-    
-    ngOnInit(): void {
-      this.displayClients();
-    }
 
-async  displayClients() {
-    let token: any = localStorage.getItem("token");
-this.allData = await this.getClient(token);
+
+ngOnInit(): void {
+  this.displayClients();
+} 
+    
+   
+
+async  displayClients() { 
+this.allData = await this.getClient();
 this.dataSource  =  new MatTableDataSource([...this.allData]);
 }
  
 
 
-  addClient() {
-    this.matdialog.open(AddClientComponent)
+ addClient() {
+    this.matdialog.open(AddClientComponent,{disableClose:true,enterAnimationDuration:'200ms',exitAnimationDuration:'200ms'})
   }
 
   on_change(event: any) {
@@ -76,19 +44,21 @@ this.dataSource  =  new MatTableDataSource([...this.allData]);
     return (ele.client_name.toLowerCase()).includes(event) 
     });
     this.dataSource = [...data];
+    
   }
 
 
 
-  getClient(token:any)
+  getClient()
   {
     return new Promise((resolve:any)=>
     {
-      this.service.clientData(token).subscribe((res: any)=>
+      this.service.clientData().subscribe((res: any)=>
         {
           if(res.status==1)
           {
-            resolve (res.clients);
+            resolve (res.data);
+            console.log(res);
           }
           else
           resolve([])

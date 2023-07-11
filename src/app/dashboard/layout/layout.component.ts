@@ -1,62 +1,38 @@
-import { Component,Output,Input,EventEmitter } from '@angular/core';
+import { Component,Output,Input,EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'team-center-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
-export class LayoutComponent {
-  constructor(private router:Router)
+export class LayoutComponent implements OnInit{
+  constructor(private router:Router,private service:AuthService)
    {
-  //   console.log(this.link);
-  //   if( this.link == '/dashboard/projects/projectdata')
-  //   {
-  //     this.somecontent="Search here for Devices and Projects";
-  //   }
-  //   else if(this.link == "/dashboard/users")
-  //   {
-  //     this.somecontent="Search here for Users";
-  //   }
-  //   else if(this.link == "/dashboard/settings/settingsmenu")
-  //   {
-  //     this.somecontent="Find the settings...";
-  //   }
+
   }
 isActive="false";
 link = this.router.url;
 
+userinfo:any;
+ngOnInit(): void {
+  this.service.getNavInfo().subscribe((res:any)=>
+  {
+this.userinfo=res;
+
+  }
+  )
+}
+
+
 
 handleSearch(searchTerm: string) {
   console.log('Searching for:', searchTerm);
-  // Perform search logic or update data based on the search term
+ 
 }
 
-// @Output() searchEvent = new EventEmitter<string>();
 
-// searchTerm: string="";
-// somecontent: string=" ";
-
-// search() {
-//   this.searchEvent.emit(this.searchTerm);
-// }
-
-
-// routeToProjects()
-// {
-  
-// this.somecontent="Search here for Devices and Projects";
-
-// }
-// routeToUsers()
-// {
-//   this.somecontent="Search here for Users"
-// }
-
-// routeToSettings()
-// {
-//   this.somecontent="Find the settings..."
-// }
 
 recents:any[]=[
 
@@ -79,6 +55,27 @@ recents:any[]=[
     time:'Time: 11:23 am'
   }
 ]
+
+uploads:any=[];
+
+saveImage(e:any)
+{
+let totalFiles = e.target.files ;
+if(totalFiles.length > 0)
+{
+  for(let i=0;i<totalFiles.length;i++)
+  {
+    let file =totalFiles[i];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (e:any) => 
+    {
+      let url:any = e.target.result;
+      this.uploads.push(url);
+    }
+  }
+}
+}
 
 
 
