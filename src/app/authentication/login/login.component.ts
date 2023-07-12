@@ -16,7 +16,7 @@ export class LoginComponent {
   {
 
   }
-
+errmsg:any="";
   routeTo() {
 
      this.service.verifyLogin(this.emailFormControl.value).subscribe((res:any)=>
@@ -24,7 +24,11 @@ export class LoginComponent {
       if(res.status == 1)
       {
         localStorage.setItem("scode", res.code);
+        localStorage.setItem("email", res.email);
         this.route.navigate(['auth/otp']);
+      }
+      else{
+this.errmsg=res.message;
       }
      })
 

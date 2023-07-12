@@ -54,9 +54,19 @@ export class AuthService {
     return this.httpClient.get(`${this.url}/api/documents`, { headers: { Authorization: this.token } })
   }
 
+  getFirmwareData(cid:any,pid:any)
+  {
+    return this.httpClient.get(`${this.url}/api/documents/${cid}/${pid}/firmwares`, { headers: { Authorization: this.token } })
+  }
+
 getNavInfo()
 {
   return this.httpClient.get(`${this.url}/api/users-details`, { headers: { Authorization: this.token } })
+}
+
+download()
+{
+  return this.httpClient.get(`${this.url}/api/documents/firmware/1_1_test11.zip`, { headers: { Authorization: this.token } })
 }
 
 }

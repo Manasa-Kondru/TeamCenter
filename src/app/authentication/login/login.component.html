@@ -9,9 +9,9 @@
       <mat-error class="m-0 p-0" *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
         Please enter a valid email address
       </mat-error>
-      <mat-error *ngIf="emailFormControl.hasError('required')">
+      <mat-hint *ngIf=" errmsg && emailFormControl.hasError('required') ">
         Email is <strong>required</strong>
-      </mat-error>
+      </mat-hint>
       <mat-hint   *ngIf="errormsg">
         Not a valid <strong>User</strong>
       </mat-hint>

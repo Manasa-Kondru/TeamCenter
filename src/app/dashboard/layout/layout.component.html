@@ -27,7 +27,7 @@
                 <mat-icon svgIcon="settings" styles=""></mat-icon>
                 <span class="px-4 ">Settings</span>
             </div>
-            <div class="p-4 px-5 inactive text-nowrap cursor-pointer" routerLink="/auth"> <mat-icon svgIcon="logout"></mat-icon>
+            <div class="p-4 px-5 inactive text-nowrap cursor-pointer" (click)="routeTo()"> <mat-icon svgIcon="logout"></mat-icon>
                 <span class="px-4 ">Logout</span>
             </div>
 
@@ -38,7 +38,7 @@
 
     <mat-drawer-content class="container fex" >
         <div class="row " >
-            <div class="col-9 ">
+            <div class="col-9">
 
 
                 <div><router-outlet></router-outlet></div>

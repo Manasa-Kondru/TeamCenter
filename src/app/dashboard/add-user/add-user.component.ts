@@ -18,6 +18,7 @@ export class AddUserComponent {
   constructor(private dialogRef:MatDialogRef<AddUserComponent>,private service:AuthService){
 
   }
+ 
 
   addUser: any = new FormGroup({
     username: new FormControl('', [Validators.required]),

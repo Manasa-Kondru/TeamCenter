@@ -12,49 +12,85 @@ import { Router } from '@angular/router';
 })
 export class ProductdetailComponent {
 
-  allData: any = [];
-  displayedColumns: string[] = ['doc_type', 'released_date', 'released_by', ' '];
-  dataSource: any;
 
-  constructor(private matdialog: MatDialog, private service: AuthService, private router: Router) {
-    let url: any = this.router.url.split('/');
- 
-    let no = parseInt(url[3])
-    this.displayProduct(no);
-
-  }
-
-  ngOnInit(): void {
-    this.displayDocs();
-   
-
-  }
-
-
-  data: any = [];
-  element: any;
-
-  url: any = this.router.url.split('/');
-  number = parseInt(this.url[3])
- 
-
-
-  displayProduct(id: any): void {
-
-
-    this.service.productData(id).subscribe((res: any) => {
-
-      this.data = res.products;
+  callFun() {
+    this.service.download().subscribe((res: any) => {
 
     })
   }
 
+  allData: any = [];
+  displayedColumns: string[] = ['doc_type', 'released_date', 'released_by', 'download'];
+  displayedColumnsdocs: string[] = ['doc_type', 'released_date', 'released_by', 'download'];
+  dataSource: any;
+  firmwaredata: any;
+  data: any = [];
+  element: any;
+  url: any = this.router.url.split('/');
+  clientid = parseInt(this.url[3]);
+  prodctid = parseInt(this.url[4]);
+  firmdata: any;
+
+  allfirmwareData: any;
+
+  f_panelOpenState = false;
+  a_panelOpenState = false;
+  d_panelOpenState = false;
+  panelOpenState = false;
+
+  // constructor
+
+  constructor(private matdialog: MatDialog, private service: AuthService, private router: Router) {
+    let url: any = this.router.url.split('/');
+    let clientid = parseInt(url[3]);
+    this.displayProduct(clientid);
+  }
+
+  // ngonit
+
+  ngOnInit(): void {
+    this.displayDocs(false,'');
+    //this.displayFirmWare();
+    console.log(this.data)
+  }
+
+  // OnChange
+
+  on_change(event: any) {
+    // let datadocs: any = [...this.allData];
+    this.displayDocs(true, event);
+    console.log(event)
+
+    // datafirmware = datafirmware.filter((ele: any) => {
+    //   return (ele.product_name.toLowerCase()).includes(event);
+    // });
+    // this.firmwaredata = [...datafirmware];
+  }
+
+  // Displaying name of the product
+
+  displayProduct(id: any): void {
+    this.service.productData(id).subscribe((res: any) => {
+      if (res.status == 1) {
+        this.data = res.products.filter((el: any) => { return parseInt(el.product_id) == parseInt(this.url[4]) });
+      }
+    })
+  }
 
 
-  async displayDocs() {
+  //Displaying documents
 
+  async displayDocs(search?: any, search_v?: any) {
     this.allData = await this.getDoc();
-    this.dataSource = new MatTableDataSource([...this.allData]);
+    let docs: any = this.allData["text"];
+    if (search === true)
+      docs = docs.filter((ele: any) => { return ((ele.document_type).toLowerCase()).includes((search_v).toLowerCase()) });
+    this.dataSource = new MatTableDataSource([...docs]);
+    let firm_w = this.allData["firmware"];
+    if (search === true)
+    firm_w = firm_w.filter((ele: any) => { return ((ele.document_type).toLowerCase()).includes((search).toLowerCase()) });
+    this.firmwaredata = new MatTableDataSource([...firm_w]);
+
   }
 
 
@@ -62,29 +98,35 @@ export class ProductdetailComponent {
     return new Promise((resolve: any) => {
       this.service.getDocData().subscribe((res: any) => {
         if (res.status == 1) {
-          resolve(res.documents);
+          resolve(res.data);
         }
         else
           resolve([])
-
       })
     })
   }
 
 
-  f_panelOpenState = false;
-  a_panelOpenState = false;
-  d_panelOpenState = false;
-  panelOpenState = false;
+  //Displaying Firmware
 
 
-  // @Input()
-  // product_name!: string;
-  // productname="";
 
-  //  product_name()
-  //  {
+  // async displayFirmWare() {
+  //   this.allfirmwareData = await this.getFirmware();
+  //   this.firmwaredata = new MatTableDataSource([...this.allfirmwareData]);
+  // }
 
-  //  }
+
+  // getFirmware() {
+  //   return new Promise((resolve: any) => {
+  //     this.service.getDocData().subscribe((res: any) => {
+  //       if (res.status == 1) {
+  //         resolve(res.data.firmware);
+  //       }
+  //       else
+  //         resolve([])
+  //     })
+  //   })
+  // }
 
 }

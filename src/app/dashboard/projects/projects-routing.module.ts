@@ -16,7 +16,7 @@ const routes: Routes = [
         path: ':client_id/productdata', component: ProductdataComponent
       },
       {
-        path: ':client_id/productdetail', component: ProductdetailComponent
+        path: ':client_id/:product_id/productdetail', component: ProductdetailComponent
       }, {
         path: '', redirectTo: 'projectdata', pathMatch: 'full'
       },

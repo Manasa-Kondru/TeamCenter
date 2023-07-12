@@ -1,32 +1,24 @@
 <form [formGroup]="otp">
-<div class="otp">OTP Verification</div>
-<div class="txt">Enter OTP sent to xxxxxxxx@gmail.com</div>
-<div class="d-flex justify-content-evenly py-3 ">
-    <input type="text" class="box" maxlength="1" #t1 (keyup)="move($event,'',t1,t2)" formControlName="t1"> 
+  <div class="otp">OTP Verification</div>
+  <div class="txt">Enter OTP sent to <b>{{email}}</b></div>
+  <div class="d-flex justify-content-evenly py-3 ">
+    <input type="text" class="box" maxlength="1" #t1 (keyup)="move($event,'',t1,t2)" formControlName="t1">
     <input type="text" class="box" maxlength="1" #t2 (keyup)="move($event,t1,t2,t3)" formControlName="t2">
     <input type="text" class="box" maxlength="1" #t3 (keyup)="move($event,t2,t3,t4)" formControlName="t3">
     <input type="text" class="box" maxlength="1" #t4 (keyup)="move($event,t3,t4,t5)" formControlName="t4">
     <input type="text" class="box" maxlength="1" #t5 (keyup)="move($event,t4,t5,t6)" formControlName="t5">
     <input type="text" class="box" maxlength="1" #t6 (keyup)="move($event,t5,t6,'')" formControlName="t6">
-</div>
-<mat-error *ngIf=" otp.get('t6')?.touched && otp.get('t6')?.hasError('required')">
+  </div>
+  <mat-error
+    *ngIf=" otp.get('t6')?.touched && otp.get('t6')?.hasError('required')&&otp.get('t5')?.touched && otp.get('t5')?.hasError('required')">
     OTP is <strong>required</strong>
   </mat-error>
-  <!-- <mat-error *ngIf="otp.get('t2')?.hasError('required')">
-    OTP is <strong>required</strong>
+
+  <mat-error
+    *ngIf="myerrmsg && otp.get('t6')?.dirty && otp.get('t5')?.dirty  && otp.get('t4')?.dirty  && otp.get('t3')?.dirty  && otp.get('t2')?.dirty && otp.get('t1')?.dirty  ">
+    OTP is <strong>not valid</strong>
   </mat-error>
-  <mat-error *ngIf="otp.get('t3')?.hasError('required')">
-    OTP is <strong>required</strong>
-  </mat-error>
-  <mat-error *ngIf="otp.get('t4')?.hasError('required')">
-    OTP is <strong>required</strong>
-  </mat-error>
-  <mat-error *ngIf="otp.get('t5')?.hasError('required')">
-    OTP is <strong>required</strong>
-  </mat-error>
-  <mat-error *ngIf="otp.get('t6')?.hasError('required')">
-    OTP is <strong>required</strong>
-  </mat-error> -->
-<div class="resend pb-2"  style="cursor: pointer;" (click)="resend()">Resend OTP</div>
-<div class="btn btn-primary btn-inside" (click)="verify()">Verify</div>
+
+  <div class="resend pb-2" style="cursor: pointer;" (click)="resend()">Resend OTP</div>
+  <div class="btn btn-primary btn-inside" (click)="verify()">Verify</div>
 </form>

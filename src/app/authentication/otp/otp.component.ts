@@ -1,18 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'team-center-otp',
   templateUrl: './otp.component.html',
   styleUrls: ['./otp.component.scss']
 })
-export class OtpComponent {
+export class OtpComponent implements OnInit,OnDestroy{
+  userinfo: any;
 
   constructor(private service: AuthService, private router: Router) {
 
   }
+  ngOnInit(): void {
+//     this.service.getNavInfo().subscribe((res:any)=>
+//   {
+// this.userinfo=res;
+
+//   }
+//   )
+  }
+
+  ngOnDestroy(): void {
+    localStorage.removeItem("scode");
+  }
+ 
 
   otp: any = new FormGroup({
     t1: new FormControl('', [Validators.required]),
@@ -39,9 +54,11 @@ export class OtpComponent {
     }
   }
 
-
+email:any=localStorage.getItem("email");
 
   tempcode: any = localStorage.getItem("scode");
+
+  myerrmsg:any = "";
 
   verify() {
     let otp_code: any = this.otp.controls.t1.value + this.otp.controls.t2.value +
@@ -53,7 +70,11 @@ export class OtpComponent {
         localStorage.setItem("token", res.token);
         this.router.navigate(['auth/congrats']);
       }
-    })
+      else{
+        this.myerrmsg=res.message;
+      }
+    },
+  )
   }
 
   resend()

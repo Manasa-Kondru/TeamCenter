@@ -1,70 +1,84 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddProductComponent } from '../add-product/add-product.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { Output,EventEmitter } from '@angular/core';
+import { Output, EventEmitter } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'team-center-productdata',
   templateUrl: './productdata.component.html',
   styleUrls: ['./productdata.component.scss']
 })
-export class ProductdataComponent {
+export class ProductdataComponent implements OnInit {
+
+  displayedColumns: string[] = ['products', 'onboardingtime', 'createdby', 'view'];
+  dataSource: any = [];
+  element: any;
+  allData: any;
+
+  constructor(private matdialog: MatDialog, private service: AuthService, private router: Router) { }
 
 
-  constructor(private matdialog: MatDialog, private service: AuthService, private router: Router) {
-
+  ngOnInit(): void {
     let url: any = this.router.url.split('/');
-    console.log(url);
     this.displayProducts(parseInt(url[3]));
   }
 
-  dataSource: any = [];
-  element: any;
 
-  displayProducts(id: any) {
-   
-
-    this.service.productData( id).subscribe((res: any) => {
-      console.log(res);
-      this.dataSource = res.products;
-      this.element = res;
-    })
-  }
+  // displayProducts(id: any) {
+  //   this.service.productData(id).subscribe((res: any) => {
+  //     this.dataSource = res.products;
+  //     this.element = res;
+  //   })
+  // }
 
   addProduct() {
-    this.matdialog.open(AddProductComponent, 
+    this.matdialog.open(AddProductComponent,
       { disableClose: true, enterAnimationDuration: '200ms', exitAnimationDuration: '200ms' })
   }
 
-  displayedColumns: string[] = ['products', 'onboardingtime', 'createdby', 'view'];
-
-
-  on_change(event: any) {
-    let data: any = [...this.element];
-    data = data.filter((ele: any) => {
-      return (ele.product_name.toLowerCase()).includes((event).toLowerCase()) || (ele.onboardingtime.toLowerCase().includes((event).toLowerCase()));
-    });
-    this.dataSource = [...data];
-  }
-
   // on_change(event: any) {
-  //   let data: any = [...this.allData];
+  //   let data: any = [...this.element];
   //   data = data.filter((ele: any) => {
-  //   return (ele.client_name.toLowerCase()).includes(event) 
+  //     return (ele.product_name.toLowerCase()).includes((event).toLowerCase()) || (ele.onboardingtime.toLowerCase().includes((event).toLowerCase()));
   //   });
   //   this.dataSource = [...data];
   // }
 
- 
+  on_change(event: any) {
+    let data: any = [...this.allData];
+    data = data.filter((ele: any) => {
+    return (ele.product_name.toLowerCase()).includes(event) || (ele.onboardingtime.toLowerCase().includes((event).toLowerCase()));
+    });
+    this.dataSource = [...data];
+  }
 
-//   @Output()
-//   emitter = new EventEmitter<string> ();
-//   emit(product_name:any)
-//   {
-// this.emitter.emit(product_name);
-//   }
+  async displayProducts(id:any) {
+    this.allData = await this.getProduct(id);
+    this.dataSource = new MatTableDataSource([...this.allData]);
+  }
+
+  getProduct(id: any) {
+    return new Promise((resolve: any) => {
+      this.service.productData(id).subscribe((res: any) => {
+        if (res.status == 1)
+          resolve(res.products);
+        else
+          resolve([])
+      })
+    })
+  }
+
+
+
+  //   @Output()
+  //   emitter = new EventEmitter<string> ();
+  //   emit(product_name:any)
+  //   {
+  // this.emitter.emit(product_name);
+  //   }
 
 
 }

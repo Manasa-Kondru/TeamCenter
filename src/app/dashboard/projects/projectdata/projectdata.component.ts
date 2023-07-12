@@ -13,62 +13,43 @@ import { MatTableDataSource } from '@angular/material/table';
 
 export class ProjectdataComponent {
 
+  allData: any = [];
+  displayedColumns: string[] = ['client_name', 'on_boarding_time', 'no_of_products', ' '];
+  dataSource: any;
+
   constructor(private matdialog: MatDialog, private service: AuthService) { }
 
-allData: any = [];
-displayedColumns: string[] = ['client_name', 'on_boarding_time', 'no_of_products', ' '];
-dataSource: any;
-
-
-
-ngOnInit(): void {
-  this.displayClients();
-} 
-    
-   
-
-async  displayClients() { 
-this.allData = await this.getClient();
-this.dataSource  =  new MatTableDataSource([...this.allData]);
-}
- 
-
-
- addClient() {
-    this.matdialog.open(AddClientComponent,{disableClose:true,enterAnimationDuration:'200ms',exitAnimationDuration:'200ms'})
+  ngOnInit(): void {
+    this.displayClients();
   }
 
   on_change(event: any) {
     let data: any = [...this.allData];
     data = data.filter((ele: any) => {
-    return (ele.client_name.toLowerCase()).includes(event) 
+      return (ele.client_name.toLowerCase()).includes(event)
     });
     this.dataSource = [...data];
-    
   }
 
+  async displayClients() {
+    this.allData = await this.getClient();
+    this.dataSource = new MatTableDataSource([...this.allData]);
+  }
 
-
-  getClient()
-  {
-    return new Promise((resolve:any)=>
-    {
-      this.service.clientData().subscribe((res: any)=>
-        {
-          if(res.status==1)
-          {
-            resolve (res.data);
-            console.log(res);
-          }
-          else
+  getClient() {
+    return new Promise((resolve: any) => {
+      this.service.clientData().subscribe((res: any) => {
+        if (res.status == 1)
+          resolve(res.data);
+        else
           resolve([])
-        
-       })
+      })
     })
   }
 
-
-
+  addClient() {
+    this.matdialog.open(AddClientComponent, { disableClose: true, enterAnimationDuration: '200ms', exitAnimationDuration: '200ms' })
+  }
 }
 
 
