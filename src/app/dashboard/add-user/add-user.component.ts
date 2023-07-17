@@ -39,7 +39,6 @@ formData:any
   
     this.service.userSender(this.formData).subscribe((res: any) => {
       if (res.status == 1) {
-      
         this.dialogRef.close();
       }
       else {
@@ -53,34 +52,7 @@ formData:any
   
   onPhotoSelected(event: any) {
     this.formData = new FormData();
-    // this.selectedPhoto = event.target.files[0];
-   //this.filename = event.target.files[0].name;
     this.formData.append('photo', event.target.files[0]);
    
   }
-
-
- //uploads:any=[];
-
-// saveImage(e:any)
-// {
-// let totalFiles = e.target.files ;
-// if(totalFiles.length > 0)
-// {
-//   for(let i=0;i<totalFiles.length;i++)
-//   {
-//     let file =totalFiles[i];
-//     const reader = new FileReader();
-//     reader.readAsDataURL(file);
-//     reader.onload = (e:any) => 
-//     {
-//       let url:any = e.target.result;
-//       this.uploads.push(url);
-//     }
-//   }
-// }
-// }
-
-
-
 }

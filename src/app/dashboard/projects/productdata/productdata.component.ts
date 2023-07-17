@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddProductComponent } from '../add-product/add-product.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+
 
 @Component({
   selector: 'team-center-productdata',
@@ -13,7 +13,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class ProductdataComponent implements OnInit {
 
-  displayedColumns: string[] = ['products', 'onboardingtime', 'createdby', 'view'];
+  displayedColumns: string[] = ['sno','products', 'onboardingtime', 'createdby', 'view'];
   dataSource: any = [];
   element: any;
   allData: any;
@@ -23,39 +23,26 @@ export class ProductdataComponent implements OnInit {
 
   ngOnInit(): void {
     let url: any = this.router.url.split('/');
+
     this.displayProducts(parseInt(url[3]));
   }
 
-
-  // displayProducts(id: any) {
-  //   this.service.productData(id).subscribe((res: any) => {
-  //     this.dataSource = res.products;
-  //     this.element = res;
-  //   })
-  // }
 
   addProduct() {
     this.matdialog.open(AddProductComponent,
       { disableClose: true, enterAnimationDuration: '200ms', exitAnimationDuration: '200ms' })
   }
 
-  // on_change(event: any) {
-  //   let data: any = [...this.element];
-  //   data = data.filter((ele: any) => {
-  //     return (ele.product_name.toLowerCase()).includes((event).toLowerCase()) || (ele.onboardingtime.toLowerCase().includes((event).toLowerCase()));
-  //   });
-  //   this.dataSource = [...data];
-  // }
 
   on_change(event: any) {
     let data: any = [...this.allData];
     data = data.filter((ele: any) => {
-    return (ele.product_name.toLowerCase()).includes(event) || (ele.onboardingtime.toLowerCase().includes((event).toLowerCase()));
+      return (ele.product_name.toLowerCase()).includes(event)
     });
     this.dataSource = [...data];
   }
 
-  async displayProducts(id:any) {
+  async displayProducts(id: any) {
     this.allData = await this.getProduct(id);
     this.dataSource = new MatTableDataSource([...this.allData]);
   }
@@ -70,16 +57,7 @@ export class ProductdataComponent implements OnInit {
       })
     })
   }
-
-
-
-  //   @Output()
-  //   emitter = new EventEmitter<string> ();
-  //   emit(product_name:any)
-  //   {
-  // this.emitter.emit(product_name);
-  //   }
-
+  
 
 }
 

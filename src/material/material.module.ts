@@ -12,7 +12,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatPaginatorModule} from '@angular/material/paginator';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 
 export const matmodules: any =
-    [MatPaginatorModule,MatDialogModule,MatSelectModule,MatDividerModule,MatListModule,FormsModule,MatIconModule, MatCardModule, MatInputModule, MatFormFieldModule, MatSidenavModule, MatToolbarModule, MatTableModule, MatExpansionModule];
+    [HighchartsChartModule,MatPaginatorModule,MatDialogModule,MatSelectModule,MatDividerModule,MatListModule,FormsModule,MatIconModule, MatCardModule, MatInputModule, MatFormFieldModule, MatSidenavModule, MatToolbarModule, MatTableModule, MatExpansionModule];

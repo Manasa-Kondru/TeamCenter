@@ -6,13 +6,12 @@ import { Component,OnInit ,Output,EventEmitter} from '@angular/core';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-  ngOnInit(): void {
-    
+  ngOnInit(): void {}
+
+  constructor()
+  {
+
   }
-  @Output() newItemEvent = new EventEmitter<string>();
+    
 
-  addNewItem(value: string) {
-    this.newItemEvent.emit(value);
-
-}
 }

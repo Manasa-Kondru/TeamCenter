@@ -3,6 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddClientComponent } from '../add-client/add-client.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { ProductsgraphComponent } from '../productsgraph/productsgraph.component';
+import { LayoutComponent } from '../layout/layout.component';
+
 
 
 @Component({
@@ -14,7 +17,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class ProjectdataComponent {
 
   allData: any = [];
-  displayedColumns: string[] = ['client_name', 'on_boarding_time', 'no_of_products', ' '];
+  displayedColumns: string[] = ['clientid', 'client_name', 'on_boarding_time', 'no_of_products', ' '];
   dataSource: any;
 
   constructor(private matdialog: MatDialog, private service: AuthService) { }
@@ -34,6 +37,7 @@ export class ProjectdataComponent {
   async displayClients() {
     this.allData = await this.getClient();
     this.dataSource = new MatTableDataSource([...this.allData]);
+
   }
 
   getClient() {
@@ -50,6 +54,11 @@ export class ProjectdataComponent {
   addClient() {
     this.matdialog.open(AddClientComponent, { disableClose: true, enterAnimationDuration: '200ms', exitAnimationDuration: '200ms' })
   }
+
+  showProductGraph() {
+    this.matdialog.open(ProductsgraphComponent, { width: '500px', height: '500px', disableClose: true, enterAnimationDuration: '200ms', exitAnimationDuration: '200ms', data: [...this.allData] })
+  }
+
 }
 
 

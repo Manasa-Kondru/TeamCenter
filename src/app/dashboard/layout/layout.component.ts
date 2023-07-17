@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit, OnDestroy {
+image:any="../assets/images/no profile.png";
+
   constructor(private router: Router, private service: AuthService) {
 
   }
@@ -30,6 +32,20 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
     }
     )
+  }
+
+  url:string | ArrayBuffer |null | undefined;
+  onSelectedFile(event:any)
+  {
+    if(event.target.files && event.target.files[0])
+    {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (event:any) =>
+      {
+        this.url=event.target.result;
+      }
+    }
   }
 
 

@@ -13,6 +13,10 @@ import { UbiquitousModule } from 'src/app/ubiquitous/ubiquitous.module';
 import { AddClientComponent } from './add-client/add-client.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UploadComponent } from './upload/upload.component';
+import { ProductsgraphComponent } from './productsgraph/productsgraph.component';
+
+
 
 
 
@@ -24,7 +28,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProductdataComponent,
     ProductdetailComponent,
     AddClientComponent,
-    AddProductComponent
+    AddProductComponent,
+    UploadComponent,
+    ProductsgraphComponent,
   ],
   imports: [
     CommonModule,

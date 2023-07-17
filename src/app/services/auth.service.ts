@@ -50,13 +50,8 @@ export class AuthService {
     return this.httpClient.post(`${this.url}/api/products/${id}/add-product`, obj, { headers: { Authorization: this.token } });
   }
 
-  getDocData() {
-    return this.httpClient.get(`${this.url}/api/documents`, { headers: { Authorization: this.token } })
-  }
-
-  getFirmwareData(cid:any,pid:any)
-  {
-    return this.httpClient.get(`${this.url}/api/documents/${cid}/${pid}/firmwares`, { headers: { Authorization: this.token } })
+  getDocData(cid:any,pid:any) {
+    return this.httpClient.get(`${this.url}/api/documents/${cid}/${pid}`, { headers: { Authorization: this.token } })
   }
 
 getNavInfo()
@@ -67,6 +62,16 @@ getNavInfo()
 download()
 {
   return this.httpClient.get(`${this.url}/api/documents/firmware/1_1_test11.zip`, { headers: { Authorization: this.token } })
+}
+
+sendDoc(cid: any,pid:any, obj: any)
+{
+  return this.httpClient.post(`${this.url}/api/documents/${cid}/${pid}/upload-docs`, obj, { headers: { Authorization: this.token } });
+}
+
+file_retrieve(docid:any)
+{
+  return this.httpClient.get(`${this.url}/api/documents/docs/${docid}/download`, { headers: { Authorization: this.token },observe: 'response',responseType: 'blob' })
 }
 
 }

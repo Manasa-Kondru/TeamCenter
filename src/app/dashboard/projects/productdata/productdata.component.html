@@ -2,16 +2,21 @@
 
 <mat-toolbar class="rounded bg-white my-3  d-flex justify-content-between fs-6 ">
   <div><mat-icon svgIcon="farrow" class=" flipped-image cursor-pointer" routerLink="../../projectdata"></mat-icon><span class="mx-2">Products</span></div>
-
+  
   <div class="btn btn-primary h-25 pb-4 " (click)="addProduct()"> Add Product</div>
 </mat-toolbar>
 
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
+  <ng-container matColumnDef="sno">
+    <th mat-header-cell *matHeaderCellDef>  </th>
+    <td mat-cell *matCellDef="let i = index" class="txt-color"> {{i+1}} </td>
+  </ng-container>
+
   <ng-container matColumnDef="products">
     <th mat-header-cell *matHeaderCellDef> Products </th>
-    <td mat-cell *matCellDef="let element, let i = index" class="txt-color"> {{i+1}} .{{element.product_name}} </td>
+    <td mat-cell *matCellDef="let element, let i = index" class="txt-color"> {{element.product_name}} </td>
   </ng-container>
 
   <ng-container matColumnDef="onboardingtime">

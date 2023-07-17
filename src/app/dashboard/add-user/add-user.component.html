@@ -11,7 +11,7 @@
           </mat-form-field>
 
           Role:<br>
-          <mat-form-field>
+          <mat-form-field class="example-full-width">
             <mat-label>Choose UserType </mat-label>
             <mat-select [(ngModel)]="role" formControlName="role">
               <mat-option value="option1">Admin</mat-option>
@@ -24,15 +24,15 @@
             </mat-form-field>
       
 
-         Upload File:<mat-form-field class="example-full-width">
-                <input type="file" matInput formControlName="email" (change)="onPhotoSelected($event)">
-              </mat-form-field>
+         <!-- Upload File:<mat-form-field class="example-full-width">
+                <input type="file" matInput  (change)="onPhotoSelected($event)">
+              </mat-form-field> -->
   
 
     
       
     
-        <!-- Upload Image:<input type="file" class="form-control px-5 mt-1"  (change)="onPhotoSelected($event)"> -->
+        Upload Image:<input type="file" class="form-control px-5 mt-1"  (change)="onPhotoSelected($event)">
     </div> 
     <div class="text-center ">
    <button mat-dialog-close="true" class="btn btn-danger mx-5 my-3"> Close</button>

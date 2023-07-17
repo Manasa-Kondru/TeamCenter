@@ -1,0 +1,29 @@
+<p class="text-success text-center mx-5  fs-5"> <b>{{heading | uppercase}}</b></p>
+
+<form class="my-3 mx-5 text-center" [formGroup]="upload">
+
+
+    <h6>Document Type:</h6>
+    <mat-form-field class=" example-full-width">
+        <mat-label> Select document_type</mat-label>
+        <mat-select  [(value)]="doc_type">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let d of doc" [value]="d.value">
+                {{d.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <h6>Version:</h6><mat-form-field class="example-full-width">
+        <input type="text" matInput formControlName="version" [(ngModel)]="_version">
+    </mat-form-field>
+
+    <h6>Upload File:</h6>
+    <input type="file" (change)="onFileSelected($event)" class="form-control mb-4">
+
+    <div class="d-flex justify-content-between"> <button mat-dialog-close="true" class="btn btn-danger">Close</button>
+        <button class="btn btn-success" (click)="submit()">Submit</button>
+    </div>
+
+</form>
