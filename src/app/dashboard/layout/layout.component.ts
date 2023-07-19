@@ -1,6 +1,7 @@
-import { Component, Output, Input, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component, Output, Input, EventEmitter, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 @Component({
   selector: 'team-center-layout',
@@ -10,11 +11,16 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LayoutComponent implements OnInit, OnDestroy {
 image:any="../assets/images/no profile.png";
 
-  constructor(private router: Router, private service: AuthService) {
+  constructor(private router: Router, private service: AuthService,private breakpointObserver:BreakpointObserver) {}
 
-  }
   ngOnDestroy(): void {
     // localStorage.removeItem("token");
+  }
+
+isDrawerOpened="true";
+    ngAfterViewInit(): void
+  {
+ 
   }
 
   routeTo() {
@@ -24,6 +30,7 @@ image:any="../assets/images/no profile.png";
   }
   isActive = "false";
   link = this.router.url;
+ 
 
   userinfo: any = { "user_name": '' };
   ngOnInit(): void {
@@ -32,6 +39,27 @@ image:any="../assets/images/no profile.png";
 
     }
     )
+
+
+//     this.breakpointObserver.observe(Breakpoints.Small )
+// .subscribe(result => {
+//   if (result.matches) {
+//     this.isDrawerOpened="false";
+//   } else {
+//  this.isDrawerOpened="true";
+//   }
+// });
+
+this.breakpointObserver.observe(Breakpoints.XSmall )
+.subscribe(result => {
+  if (result.matches) {
+    this.isDrawerOpened="false";
+  } else {
+ this.isDrawerOpened="true";
+  }
+});
+
+
   }
 
   url:string | ArrayBuffer |null | undefined;

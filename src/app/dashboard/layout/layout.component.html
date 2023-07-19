@@ -1,17 +1,19 @@
-<mat-drawer-container class="example-container bg-info ">
 
-    <mat-drawer mode="side" opened class="bg-primary mdrawer">
+<mat-toolbar class="hidden-icon " style="height:5%; background: #121432 !important;">  <mat-icon  class="text-white">menu</mat-icon></mat-toolbar>
+<mat-sidenav-container class="example-container bg-info" >
 
+
+    <mat-sidenav mode="side"  [opened]=isDrawerOpened class="bg-primary mdrawer mx-0 px-0" #drawer>
+        
         <div class="text-center"><img [src]="url? url :image" class="rounded-circle w-25  mt-5 " alt="Person Image">
-            <!-- <input type="file" (change)="onSelectedFile($event)"  class="Select-profile-picture"> -->
+           
         </div>
-        <div class="text-center text-white px-4 py-3 text-nowrap">
-            <P><b>{{userinfo.user_name | titlecase}}<br>{{userinfo.role|titlecase}}<br>{{userinfo.email}}</b></P>
+        <div class="text-center text-white px-1 py-3">
+            <p ><b>{{userinfo.user_name | titlecase}}<br>{{userinfo.role|titlecase}}<br>{{userinfo.email}}</b></p>
 
         </div>
 
-        <div class="d-flex flex-column ">
-
+        <div class="d-flex flex-column">
             <div class="p-4 px-5 text-nowrap cursor-pointer" [ngClass]="p.isActive?'active':'inactive'"
                 routerLink="./projects" routerLinkActive="active" #p="routerLinkActive">
                 <mat-icon svgIcon="project"></mat-icon>
@@ -31,22 +33,21 @@
                     svgIcon="logout"></mat-icon>
                 <span class="px-4 ">Logout</span>
             </div>
-
-
         </div>
 
-    </mat-drawer>
+    </mat-sidenav>
 
-    <mat-drawer-content class="container fex ">
+    <mat-sidenav-content class="container fex  ">
+       
+     
         <div class="row ">
             <div class="col-md-9 col-xs-12  container">
-
                 <div class="row">
                     <div class="col-12"><router-outlet></router-outlet></div>
                 </div>
             </div>
 
-            <div class="col-md-3 my-2   col-xs-12 " style="border:15px solid white;height: 95vh;border-radius: 4%; ">
+            <div class="col-md-3 my-2   col-s-12 " style="border:15px solid white;height: 95vh;border-radius: 4%; ">
                 <h3 class="recent text-primary text-center ">Recents</h3>
                 <div class="ln "></div>
                 <div *ngFor="let r of recents" class="">
@@ -58,6 +59,6 @@
                 </div>
             </div>
         </div>
-    </mat-drawer-content>
+    </mat-sidenav-content>
 
-</mat-drawer-container>
+</mat-sidenav-container>
