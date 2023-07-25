@@ -13,7 +13,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatPaginatorModule} from '@angular/material/paginator';
 import { HighchartsChartModule } from 'highcharts-angular';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 export const matmodules: any =
-    [HighchartsChartModule,MatPaginatorModule,MatDialogModule,MatSelectModule,MatDividerModule,MatListModule,FormsModule,MatIconModule, MatCardModule, MatInputModule, MatFormFieldModule, MatSidenavModule, MatToolbarModule, MatTableModule, MatExpansionModule];
+    [MatSnackBarModule,HighchartsChartModule,MatPaginatorModule,MatDialogModule,MatSelectModule,MatDividerModule,MatListModule,FormsModule,MatIconModule, MatCardModule, MatInputModule, MatFormFieldModule, MatSidenavModule, MatToolbarModule, MatTableModule, MatExpansionModule];

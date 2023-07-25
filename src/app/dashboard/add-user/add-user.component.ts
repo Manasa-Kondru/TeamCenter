@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -15,10 +16,11 @@ export class AddUserComponent {
   user_type: any;
  
   utype:any;
-  constructor(private dialogRef:MatDialogRef<AddUserComponent>,private service:AuthService){
+  constructor(private dialogRef:MatDialogRef<AddUserComponent>,private service:AuthService,private _snackBar: MatSnackBar){
 
   }
  
+
 
   addUser: any = new FormGroup({
     username: new FormControl('', [Validators.required]),
@@ -39,7 +41,9 @@ formData:any
   
     this.service.userSender(this.formData).subscribe((res: any) => {
       if (res.status == 1) {
+        this._snackBar.open(res.message);
         this.dialogRef.close();
+      
       }
       else {
         this.error = "true";

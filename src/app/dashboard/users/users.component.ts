@@ -10,11 +10,11 @@ import { MatPaginator } from '@angular/material/paginator';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
+
 export class UsersComponent  implements OnInit{
 allData: any = [];
 displayedColumns: string[] = ['name', 'role', 'email','utype'];
 dataSource: any;
-
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -26,7 +26,6 @@ dataSource: any;
     }
 
 async  displayUsers() {
-   
 this.allData = await this.getUser();
 this.dataSource  =  new MatTableDataSource([...this.allData]);
 this.dataSource.paginator = this.paginator;
@@ -40,19 +39,15 @@ this.dataSource.paginator = this.paginator;
       this.service.userData().subscribe((res: any)=>
         {
           if(res.status==1)
-          {
             resolve (res.users);
-            console.log(res);
-          }
           else
           resolve([])
-        
        })
     })
   }
 
   addUser() {
-    this.matdialog.open(AddUserComponent,{disableClose:true,enterAnimationDuration:'200ms',exitAnimationDuration:'200ms'})
+    this.matdialog.open(AddUserComponent,{disableClose:true,enterAnimationDuration:'200ms',exitAnimationDuration:'200ms',width:'500px'})
   }
 
   on_change(event: any) {

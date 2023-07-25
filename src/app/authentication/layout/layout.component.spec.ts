@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LayoutComponent } from './layout.component';
+import { matmodules } from 'src/material/material.module';
+import { RouterModule } from '@angular/router';
+import { SvgService } from 'src/app/services/svg.service';
 
 describe('LayoutComponent', () => {
   let component: LayoutComponent;
@@ -8,7 +10,9 @@ describe('LayoutComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LayoutComponent]
+      declarations: [LayoutComponent],
+      imports:[matmodules,RouterModule],
+      providers:[SvgService]
     });
     fixture = TestBed.createComponent(LayoutComponent);
     component = fixture.componentInstance;

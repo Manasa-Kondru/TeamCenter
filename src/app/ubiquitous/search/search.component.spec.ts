@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchComponent } from './search.component';
+import { matmodules } from 'src/material/material.module';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -8,7 +9,8 @@ describe('SearchComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SearchComponent]
+      declarations: [SearchComponent],
+      imports: [...matmodules]
     });
     fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;

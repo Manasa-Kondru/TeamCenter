@@ -1,41 +1,41 @@
-<form [formGroup]="addUser" >
+<form [formGroup]="addUser">
 
-    <div class="text-center text-primary fs-5 mt-3  ">
-        ADD USER
-    </div>
-    <div class="m-3 p-3">
-       
-       
-       Name:<mat-form-field class="example-full-width">
-            <input type="text" matInput formControlName="username" [(ngModel)]="uname">
-          </mat-form-field>
+  <div class="text-center text-primary fs-5 mt-3  ">
+    ADD USER
+  </div>
+  <div class="m-3 p-3">
 
-          Role:<br>
-          <mat-form-field class="example-full-width">
-            <mat-label>Choose UserType </mat-label>
-            <mat-select [(ngModel)]="role" formControlName="role">
-              <mat-option value="option1">Admin</mat-option>
-              <mat-option value="option2">User</mat-option>
-            </mat-select>
-          </mat-form-field><br>
-  
-           Email: <mat-form-field class="example-full-width">
-              <input type="email" matInput formControlName="email" [(ngModel)]="email_id">
-            </mat-form-field>
-      
 
-         <!-- Upload File:<mat-form-field class="example-full-width">
-                <input type="file" matInput  (change)="onPhotoSelected($event)">
-              </mat-form-field> -->
-  
+    Name:<mat-form-field class="example-full-width">
+      <input type="text" matInput formControlName="username" [(ngModel)]="uname">
+    </mat-form-field>
 
-    
-      
-    
-        Upload Image:<input type="file" class="form-control px-5 mt-1"  (change)="onPhotoSelected($event)">
-    </div> 
-    <div class="text-center ">
-   <button mat-dialog-close="true" class="btn btn-danger mx-5 my-3"> Close</button>
-   <button (click)="sendUser()" class="btn btn-success mx-5 my-3"> Submit</button>
-</div>
+    UserType:<br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Choose UserType </mat-label>
+      <mat-select [(value)]="utype" formControlName="role">
+        <mat-option [value]="'Admin'">Admin</mat-option>
+        <mat-option [value]="'User'">User</mat-option>
+      </mat-select>
+    </mat-form-field><br>
+
+    Role: <mat-form-field class="example-full-width">
+      <input type="text" matInput formControlName="role" [(ngModel)]="role">
+    </mat-form-field>
+
+
+
+    Email: <mat-form-field class="example-full-width">
+      <input type="email" matInput formControlName="email" [(ngModel)]="email_id">
+    </mat-form-field>
+
+
+    Upload Image:<input type="file" class="form-control px-5 mt-1" (change)="onPhotoSelected($event)">
+  </div>
+
+  <div class="text-center ">
+    <button mat-dialog-close="true" class="btn btn-danger mx-5 my-3"> Close</button>
+    <button (click)="sendUser()" class="btn btn-success mx-5 my-3"> Submit</button>
+  </div>
+
 </form>

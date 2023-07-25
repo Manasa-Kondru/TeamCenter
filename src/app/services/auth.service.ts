@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' // since this service depends on other services.
 })
+
 export class AuthService {
 
   constructor(private httpClient: HttpClient) { }
-  url = "http://192.168.100.18:5000";
+  url = "http://192.168.100.13:5000";
 
   token: any = 'Bearer' + ' ' + localStorage.getItem("token");
 
