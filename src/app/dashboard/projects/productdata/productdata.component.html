@@ -1,16 +1,17 @@
-<team-center-search display_txt="Search here for Devices & Projects " (eventname)="on_change($event)"></team-center-search>
+<team-center-search display_txt="Search here for Devices & Projects "
+  (eventname)="on_change($event)"></team-center-search>
 
 <mat-toolbar class="rounded bg-white my-3  d-flex justify-content-between fs-6 ">
-  <div><mat-icon svgIcon="farrow" class=" flipped-image cursor-pointer" routerLink="../../projectdata"></mat-icon><span class="mx-2">Products</span></div>
-  
+  <div><mat-icon svgIcon="farrow" class=" flipped-image cursor-pointer" routerLink="../../projectdata"></mat-icon><span
+      class="mx-2">Products</span></div>
+
   <div class="btn btn-primary h-25 pb-4 " (click)="addProduct()"> Add Product</div>
 </mat-toolbar>
-
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <ng-container matColumnDef="sno">
-    <th mat-header-cell *matHeaderCellDef>  </th>
+    <th mat-header-cell *matHeaderCellDef> </th>
     <td mat-cell *matCellDef="let i = index" class="txt-color"> {{i+1}} </td>
   </ng-container>
 
@@ -24,17 +25,15 @@
     <td mat-cell *matCellDef="let element" class="txt-color"> {{element.onBoarding_time | date:'medium'}} </td>
   </ng-container>
 
-
   <ng-container matColumnDef="createdby">
     <th mat-header-cell *matHeaderCellDef styles="color:grey"> Created by</th>
     <td mat-cell *matCellDef="let element" class="txt-color"> {{element.created_by}} </td>
   </ng-container>
 
-
   <ng-container matColumnDef="view">
     <th mat-header-cell *matHeaderCellDef styles="color:grey"> View </th>
-    <td mat-cell *matCellDef="let element"  routerLink="../{{element.product_id}}/productdetail" > <mat-icon class="text-end cursor-pointer" svgIcon="farrow"
-      ></mat-icon> </td>
+    <td mat-cell *matCellDef="let element" routerLink="../{{element.product_id}}/productdetail"> <mat-icon
+        class="text-end cursor-pointer" svgIcon="farrow"></mat-icon> </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

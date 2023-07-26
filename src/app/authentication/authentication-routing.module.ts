@@ -5,6 +5,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
 import { OtpComponent } from './otp/otp.component';
 import { CongratsComponent } from './congrats/congrats.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -20,7 +21,7 @@ const routes: Routes = [
         path: 'otp', component: OtpComponent
       },
       {
-        path: 'congrats', component: CongratsComponent
+        path: 'congrats', component: CongratsComponent,canActivate: [AuthGuard]
       }
     ]
   }

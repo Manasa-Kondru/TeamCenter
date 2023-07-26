@@ -47,14 +47,16 @@
                 </div>
             </div>
 
-            <div class="col-md-3 my-2   col-s-12 " style="border:15px solid white;height: 95vh;border-radius: 4%; ">
+            <div class="col-md-3 my-2   col-s-12 d-flex flex-column flex-nowrap " style="overflow-y: scroll;height: 100vh;border:15px solid white;border-radius: 4%;">
                 <h3 class="recent text-primary text-center ">Recents</h3>
                 <div class="ln "></div>
-                <div *ngFor="let r of recents" class="">
-                    <small>{{r.Name}}</small><br>
-                    <small>{{r.version}}</small><br>
-                    <small>{{r.date}}</small><br>
-                    <small>{{r.time}}<button class="btn btn-primary mx-4 px-4 py-0">View</button></small>
+                <div *ngFor="let r of recents" class="flex-shrink-1 ">
+                       <small> {{r.data}}</small><br>
+                       <b>FileName:</b> <small > {{r.filename}}</small><br>
+                       <b>Version:</b> <small > {{r.version}}</small><br>
+                       <div class="d-flex justify-content-lg-between flex-shrink-1 justify-content-md-start"><b>Date:</b><small  style="padding-top: 2px;"> {{r.Date | date:'dd/MM/yy'}}</small><br>
+                 
+                        <button class="btn btn-primary mx-4 px-4 py-0 ">View</button></div>
                     <div class=" my-1 line"></div>
                 </div>
             </div>

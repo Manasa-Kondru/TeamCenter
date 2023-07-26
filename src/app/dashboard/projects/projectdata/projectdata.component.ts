@@ -1,10 +1,11 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddClientComponent } from '../add-client/add-client.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductsgraphComponent } from '../productsgraph/productsgraph.component';
-import { LayoutComponent } from '../layout/layout.component';
+
+import { MatPaginator } from '@angular/material/paginator';
 
 
 
@@ -26,6 +27,9 @@ export class ProjectdataComponent {
     this.displayClients();
   }
 
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+
   on_change(event: any) {
     let data: any = [...this.allData];
     data = data.filter((ele: any) => {
@@ -37,16 +41,14 @@ export class ProjectdataComponent {
   async displayClients() {
     this.allData = await this.getClient();
     this.dataSource = new MatTableDataSource([...this.allData]);
+    this.dataSource.paginator = this.paginator;
 
   }
 
   getClient() {
     return new Promise((resolve: any) => {
       this.service.clientData().subscribe((res: any) => {
-        if (res.status == 1)
           resolve(res.data);
-        else
-          resolve([])
       })
     })
   }

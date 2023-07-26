@@ -15,7 +15,9 @@ export class AuthGuard implements CanActivate{
           return true;
        else
        {
+        this.router.navigate(['/auth/login'])
         window.alert("U don't have permission to view this page");
+        localStorage.clear();
           return false ;
        }
        }

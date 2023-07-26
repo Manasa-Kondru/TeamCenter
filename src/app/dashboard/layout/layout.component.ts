@@ -10,6 +10,7 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 })
 export class LayoutComponent implements OnInit, OnDestroy {
 image:any="../assets/images/no profile.png";
+  recents: any;
 
   constructor(private router: Router, private service: AuthService,private breakpointObserver:BreakpointObserver) {}
 
@@ -37,8 +38,15 @@ isDrawerOpened="true";
     this.service.getNavInfo().subscribe((res: any) => {
       this.userinfo = res;
 
-    }
-    )
+    })
+
+    this.service.recents().subscribe((res: any) => {
+      this.recents = res.recentFiles;
+
+   })
+
+
+   
 
 
 //     this.breakpointObserver.observe(Breakpoints.Small )
@@ -82,30 +90,34 @@ this.breakpointObserver.observe(Breakpoints.XSmall )
     console.log('Searching for:', searchTerm);
 
   }
+  recentsdata()
+  {
+   
+  }
 
 
 
-  recents: any[] = [
+  // recents: any[] = [
 
-    {
-      Name: 'Latest Firmware released by Embeded team',
-      version: 'Version: xxxxxxxxxxxxx',
-      date: 'Date: 24-04-2023 ',
-      time: 'Time: 11:23 am'
-    },
-    {
-      Name: 'Latest Firmware released by Embeded team',
-      version: 'Version: xxxxxxxxxxxxx',
-      date: 'Date: 24-04-2023 ',
-      time: 'Time: 11:23 am'
-    },
-    {
-      Name: 'Latest Firmware released by Embeded team',
-      version: 'Version: xxxxxxxxxxxxx',
-      date: 'Date: 24-04-2023 ',
-      time: 'Time: 11:23 am'
-    }
-  ]
+  //   {
+  //     Name: 'Latest Firmware released by Embeded team',
+  //     version: 'Version: xxxxxxxxxxxxx',
+  //     date: 'Date: 24-04-2023 ',
+  //     time: 'Time: 11:23 am'
+  //   },
+  //   {
+  //     Name: 'Latest Firmware released by Embeded team',
+  //     version: 'Version: xxxxxxxxxxxxx',
+  //     date: 'Date: 24-04-2023 ',
+  //     time: 'Time: 11:23 am'
+  //   },
+  //   {
+  //     Name: 'Latest Firmware released by Embeded team',
+  //     version: 'Version: xxxxxxxxxxxxx',
+  //     date: 'Date: 24-04-2023 ',
+  //     time: 'Time: 11:23 am'
+  //   }
+  // ]
 
   uploads: any = [];
 

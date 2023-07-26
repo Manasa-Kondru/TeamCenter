@@ -75,4 +75,10 @@ file_retrieve(docid:any)
   return this.httpClient.get(`${this.url}/api/documents/docs/${docid}/download`, { headers: { Authorization: this.token },observe: 'response',responseType: 'blob' })
 }
 
+recents()
+{
+  return this.httpClient.get(`${this.url}/api/documents/recents`, { headers: { Authorization: this.token } })
+ 
+}
+
 }
