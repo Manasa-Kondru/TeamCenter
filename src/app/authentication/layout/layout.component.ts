@@ -8,18 +8,15 @@ import { Router } from '@angular/router';
 })
 export class LayoutComponent {
 
-    
   public href: string = "";
+  display: boolean = false;
 
-  constructor(private router: Router) {}
-display :boolean=false;
+  constructor(private router: Router) { }
+
   ngOnInit() {
     this.href = this.router.url;
-    if(this.href==='/auth/login' || this.href === '/auth/otp')
-   this.display = true;
-    else
-    this.display=false;
-     console.log(this.router.url);
-   }
+    this.display = this.href === '/auth/login' || this.href === '/auth/otp' ? true : false;
+    localStorage.clear();
+  }
 
 }

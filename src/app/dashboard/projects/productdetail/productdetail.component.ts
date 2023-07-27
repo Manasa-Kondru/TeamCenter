@@ -100,22 +100,18 @@ export class ProductdetailComponent {
   }
 
   //downloading file
+  
   fetch_file(docid: any) {
     this.service.file_retrieve(docid).subscribe(
       (res: any) => {
-
-
-
         let fileName = res.headers.get('Content-Disposition')?.split(';')[1].split('=')[1];
         console.log(res.headers.get('Content-Disposition'))
         let blob: Blob = res.body as Blob;
+        console.log(res.body);
         let a = document.createElement('a');
         a.download = fileName;
-
-        // a.download = 'archive.zip';
         a.href = window.URL.createObjectURL(blob);
         a.click();
-
       }
     )
   }

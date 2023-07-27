@@ -10,8 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AppComponent {
   title = 'teamcenterUI';
-  constructor( private svg: SvgService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer)
-  {
-this.svg.getIconData( iconRegistry, sanitizer );
+  constructor(private svg: SvgService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    this.svg.getIconData(iconRegistry, sanitizer);
   }
 }

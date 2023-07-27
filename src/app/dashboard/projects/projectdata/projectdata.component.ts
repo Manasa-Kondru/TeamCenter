@@ -4,10 +4,7 @@ import { AddClientComponent } from '../add-client/add-client.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductsgraphComponent } from '../productsgraph/productsgraph.component';
-
 import { MatPaginator } from '@angular/material/paginator';
-
-
 
 @Component({
   selector: 'team-center-projectdata',
@@ -18,8 +15,11 @@ import { MatPaginator } from '@angular/material/paginator';
 export class ProjectdataComponent {
 
   allData: any = [];
-  displayedColumns: string[] = ['clientid', 'client_name', 'on_boarding_time', 'no_of_products', ' '];
+  displayedColumns: string[] = ['clientid', 'client_name', 'on_boarding_time', 'no_of_products',' '];
   dataSource: any;
+
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
 
   constructor(private matdialog: MatDialog, private service: AuthService) { }
 
@@ -27,8 +27,6 @@ export class ProjectdataComponent {
     this.displayClients();
   }
 
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
 
   on_change(event: any) {
     let data: any = [...this.allData];
@@ -42,13 +40,12 @@ export class ProjectdataComponent {
     this.allData = await this.getClient();
     this.dataSource = new MatTableDataSource([...this.allData]);
     this.dataSource.paginator = this.paginator;
-
   }
 
   getClient() {
     return new Promise((resolve: any) => {
       this.service.clientData().subscribe((res: any) => {
-          resolve(res.data);
+        resolve(res.data);
       })
     })
   }
@@ -58,7 +55,7 @@ export class ProjectdataComponent {
   }
 
   showProductGraph() {
-    this.matdialog.open(ProductsgraphComponent, { width: '500px', height: '500px', disableClose: true, enterAnimationDuration: '200ms', exitAnimationDuration: '200ms', data: [...this.allData] })
+    this.matdialog.open(ProductsgraphComponent, { width: '80vh', height: '70vh', disableClose: true, enterAnimationDuration: '200ms', exitAnimationDuration: '200ms', data: [...this.allData] })
   }
 
 }

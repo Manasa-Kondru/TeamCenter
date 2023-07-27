@@ -9,25 +9,19 @@ import { Router } from '@angular/router';
   templateUrl: './otp.component.html',
   styleUrls: ['./otp.component.scss']
 })
-export class OtpComponent implements OnInit,OnDestroy{
+export class OtpComponent implements OnInit, OnDestroy {
   userinfo: any;
+  email: any = localStorage.getItem("email");
+  tempcode: any = localStorage.getItem("scode");
+  myerrmsg: any = "";
 
-  constructor(private service: AuthService, private router: Router) {
+  constructor(private service: AuthService, private router: Router) { }
 
-  }
-  ngOnInit(): void {
-//     this.service.getNavInfo().subscribe((res:any)=>
-//   {
-// this.userinfo=res;
-
-//   }
-//   )
-  }
+  ngOnInit(): void { }
 
   ngOnDestroy(): void {
     localStorage.removeItem("scode");
   }
- 
 
   otp: any = new FormGroup({
     t1: new FormControl('', [Validators.required]),
@@ -38,7 +32,6 @@ export class OtpComponent implements OnInit,OnDestroy{
     t6: new FormControl('', [Validators.required]),
   }
   )
-
 
   move(e: any, prev: any, current: any, next: any) {
     var length = current.value.length;
@@ -54,12 +47,6 @@ export class OtpComponent implements OnInit,OnDestroy{
     }
   }
 
-email:any=localStorage.getItem("email");
-
-  tempcode: any = localStorage.getItem("scode");
-
-  myerrmsg:any = "";
-
   verify() {
     let otp_code: any = this.otp.controls.t1.value + this.otp.controls.t2.value +
       this.otp.controls.t3.value + this.otp.controls.t4.value + this.otp.controls.t5.value + this.otp.controls.t6.value;
@@ -70,18 +57,15 @@ email:any=localStorage.getItem("email");
         localStorage.setItem("token", res.token);
         this.router.navigate(['auth/congrats']);
       }
-      else{
-        this.myerrmsg=res.message;
+      else {
+        this.myerrmsg = res.message;
       }
     },
-  )
+    )
   }
 
-  resend()
-  {
-    console.log(this.tempcode);
-    this.service.resendOTP({code:this.tempcode}).subscribe((res:any)=>{
-      console.log(res);
+  resend() {
+    this.service.resendOTP({ code: this.tempcode }).subscribe((res: any) => {
     });
   }
 

@@ -9,11 +9,10 @@
         </div>
     </mat-toolbar>
 
-<!-- table -->
+    <!-- table -->
 
     <mat-accordion multi="true" hideToggle>
-        <mat-expansion-panel (opened)="f_panelOpenState = true" (closed)="f_panelOpenState = false" 
-            class="mt-4">
+        <mat-expansion-panel (opened)="f_panelOpenState = true" (closed)="f_panelOpenState = false" class="mt-4">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     Firmware
@@ -47,7 +46,8 @@
 
                 <ng-container matColumnDef="download">
                     <th mat-header-cell *matHeaderCellDef> Download </th>
-                    <td mat-cell *matCellDef="let element"> <button class="btn btn-primary px-2 py-1" (click)="fetch_file(element.document_id)">Download</button> </td>
+                    <td mat-cell *matCellDef="let element"> <button class="btn btn-primary px-2 py-1"
+                            (click)="fetch_file(element.document_id)">Download</button> </td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -59,8 +59,7 @@
         </mat-expansion-panel>
 
         <!-- 2 -->
-        <mat-expansion-panel (opened)="d_panelOpenState = true" (closed)="d_panelOpenState = false"
-            class="mt-2">
+        <mat-expansion-panel (opened)="d_panelOpenState = true" (closed)="d_panelOpenState = false" class="mt-2">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     Documents
@@ -94,7 +93,8 @@
 
                 <ng-container matColumnDef="download">
                     <th mat-header-cell *matHeaderCellDef> Download </th>
-                    <td mat-cell *matCellDef="let element"> <button class="btn btn-primary px-2 py-1" (click)="fetch_file(element.document_id)">Download</button> </td>
+                    <td mat-cell *matCellDef="let element"> <button class="btn btn-primary px-2 py-1"
+                            (click)="fetch_file(element.document_id)">Download</button> </td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -106,7 +106,7 @@
         </mat-expansion-panel>
 
         <!-- 3 -->
-<!-- 
+
         <mat-expansion-panel (opened)="a_panelOpenState = true" (closed)="a_panelOpenState = false" hideToggle
             class="mt-2">
             <mat-expansion-panel-header>
@@ -142,13 +142,13 @@
 
                 <ng-container matColumnDef="download">
                     <th mat-header-cell *matHeaderCellDef> Download </th>
-                    <td mat-cell *matCellDef="let element"> <button class="btn btn-primary   px-2 py-1">Download</button> </td>
+                    <td mat-cell *matCellDef="let element"> <button
+                            class="btn btn-primary   px-2 py-1">Download</button> </td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
-        </mat-expansion-panel> -->
+        </mat-expansion-panel>
 
     </mat-accordion>
-

@@ -8,7 +8,6 @@ import { Component,Input,Output,EventEmitter } from '@angular/core';
 export class SearchComponent {
 
 @Input() display_txt:any;
-
 @Output() eventname:any = new EventEmitter();
 
 searchhere:any;

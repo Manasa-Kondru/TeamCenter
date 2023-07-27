@@ -23,7 +23,6 @@ export class ProductdataComponent implements OnInit {
 
   ngOnInit(): void {
     let url: any = this.router.url.split('/');
-
     this.displayProducts(parseInt(url[3]));
   }
 
@@ -57,8 +56,6 @@ export class ProductdataComponent implements OnInit {
       })
     })
   }
-  
-
 }
 
 

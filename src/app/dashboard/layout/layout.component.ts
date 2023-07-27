@@ -1,125 +1,63 @@
-import { Component, Output, Input, EventEmitter, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, Output, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'team-center-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
-export class LayoutComponent implements OnInit, OnDestroy {
-image:any="../assets/images/no profile.png";
+export class LayoutComponent implements OnInit {
+
+  image: any = "https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg?w=740&t=st=1690375137~exp=1690375737~hmac=1cd5ea9bf0c4fc6c1879764613adc63cab934698877969b985086aab91c89287"
   recents: any;
+  base_url = "http://192.168.100.13:5000";
+  isDrawerOpened = true;
+  isActive = "false";
+  link = this.router.url;
+  userinfo: any;
+  uploads: any = [];
+  url: string | ArrayBuffer | null | undefined;
 
-  constructor(private router: Router, private service: AuthService,private breakpointObserver:BreakpointObserver) {}
-
-  ngOnDestroy(): void {
-    // localStorage.removeItem("token");
-  }
-
-isDrawerOpened="true";
-    ngAfterViewInit(): void
-  {
- 
-  }
+  constructor(private router: Router, private service: AuthService, private breakpointObserver: BreakpointObserver) { }
 
   routeTo() {
     this.router.navigate(['/auth']);
-    localStorage.removeItem("token");
-    localStorage.removeItem("email");
+    localStorage.clear();
   }
-  isActive = "false";
-  link = this.router.url;
- 
 
-  userinfo: any = { "user_name": '' };
   ngOnInit(): void {
     this.service.getNavInfo().subscribe((res: any) => {
       this.userinfo = res;
+    });
 
-    })
 
     this.service.recents().subscribe((res: any) => {
       this.recents = res.recentFiles;
 
-   })
+    })
 
-
-   
-
-
-//     this.breakpointObserver.observe(Breakpoints.Small )
-// .subscribe(result => {
-//   if (result.matches) {
-//     this.isDrawerOpened="false";
-//   } else {
-//  this.isDrawerOpened="true";
-//   }
-// });
-
-this.breakpointObserver.observe(Breakpoints.XSmall )
-.subscribe(result => {
-  if (result.matches) {
-    this.isDrawerOpened="false";
-  } else {
- this.isDrawerOpened="true";
-  }
-});
-
-
+    this.breakpointObserver.observe(Breakpoints.XSmall)
+      .subscribe(result => {
+        this.isDrawerOpened = result.matches ? false : true;
+      });
   }
 
-  url:string | ArrayBuffer |null | undefined;
-  onSelectedFile(event:any)
-  {
-    if(event.target.files && event.target.files[0])
-    {
+  getUrl() {
+    return `${this.base_url}${this.userinfo.photo}`;
+  }
+
+ 
+  onSelectedFile(event: any) {
+    if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
-      reader.onload = (event:any) =>
-      {
-        this.url=event.target.result;
+      reader.onload = (event: any) => {
+        this.url = event.target.result;
       }
     }
   }
-
-
-
-  handleSearch(searchTerm: string) {
-    console.log('Searching for:', searchTerm);
-
-  }
-  recentsdata()
-  {
-   
-  }
-
-
-
-  // recents: any[] = [
-
-  //   {
-  //     Name: 'Latest Firmware released by Embeded team',
-  //     version: 'Version: xxxxxxxxxxxxx',
-  //     date: 'Date: 24-04-2023 ',
-  //     time: 'Time: 11:23 am'
-  //   },
-  //   {
-  //     Name: 'Latest Firmware released by Embeded team',
-  //     version: 'Version: xxxxxxxxxxxxx',
-  //     date: 'Date: 24-04-2023 ',
-  //     time: 'Time: 11:23 am'
-  //   },
-  //   {
-  //     Name: 'Latest Firmware released by Embeded team',
-  //     version: 'Version: xxxxxxxxxxxxx',
-  //     date: 'Date: 24-04-2023 ',
-  //     time: 'Time: 11:23 am'
-  //   }
-  // ]
-
-  uploads: any = [];
 
   saveImage(e: any) {
     let totalFiles = e.target.files;

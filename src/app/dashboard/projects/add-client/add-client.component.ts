@@ -15,21 +15,15 @@ export class AddClientComponent {
   error:any = false;
   errmsg:any = '';
 
-  constructor(private dialogRef: MatDialogRef<AddClientComponent>, private service: AuthService) {
-
-  }
+  constructor(private dialogRef: MatDialogRef<AddClientComponent>, private service: AuthService) { }
 
   addClient: any = new FormGroup({
     clientname: new FormControl('', [Validators.required]),
     nfproducts: new FormControl('', [Validators.required]),
-
   })
-
-
 
   sendClient() {
     let obj: any = { "client_name": this.cname, "no_of_products": this.noOfProducts };
-  
     this.service.clientSender(obj).subscribe((res: any) => {
       if (res.status === 1) {
         this.dialogRef.close();

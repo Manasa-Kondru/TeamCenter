@@ -1,4 +1,4 @@
-import { Component , OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,49 +11,46 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./users.component.scss']
 })
 
-export class UsersComponent  implements OnInit{
-allData: any = [];
-displayedColumns: string[] = ['name', 'role', 'email','utype'];
-dataSource: any;
+export class UsersComponent implements OnInit {
+  allData: any = [];
+  displayedColumns: string[] = ['name', 'role', 'email', 'utype'];
+  dataSource: any;
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
   constructor(private matdialog: MatDialog, private service: AuthService) { }
-    
-    ngOnInit(): void {
-      this.displayUsers();
-    }
 
-async  displayUsers() {
-this.allData = await this.getUser();
-this.dataSource  =  new MatTableDataSource([...this.allData]);
-this.dataSource.paginator = this.paginator;
-}
- 
+  ngOnInit(): void {
+    this.displayUsers();
+  }
 
-  getUser()
-  {
-    return new Promise((resolve:any)=>
-    {
-      this.service.userData().subscribe((res: any)=>
-        {
-          if(res.status==1)
-            resolve (res.users);
-          else
+  async displayUsers() {
+    this.allData = await this.getUser();
+    this.dataSource = new MatTableDataSource([...this.allData]);
+    this.dataSource.paginator = this.paginator;
+  }
+
+
+  getUser() {
+    return new Promise((resolve: any) => {
+      this.service.userData().subscribe((res: any) => {
+        if (res.status == 1)
+          resolve(res.users);
+        else
           resolve([])
-       })
+      })
     })
   }
 
   addUser() {
-    this.matdialog.open(AddUserComponent,{disableClose:true,enterAnimationDuration:'200ms',exitAnimationDuration:'200ms',width:'500px'})
+    this.matdialog.open(AddUserComponent, { disableClose: true, enterAnimationDuration: '200ms', exitAnimationDuration: '200ms', width: '500px' })
   }
 
   on_change(event: any) {
     let data: any = [...this.allData];
     data = data.filter((ele: any) => {
-    return (ele.name.toLowerCase()).includes(event) || (ele.email.toLowerCase().includes(event))
+      return (ele.name.toLowerCase()).includes(event) || (ele.email.toLowerCase().includes(event))
     });
     this.dataSource = [...data];
   }
