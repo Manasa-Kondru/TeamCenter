@@ -20,8 +20,6 @@ export class AddProductComponent {
 
   addProduct: any = new FormGroup({
     product: new FormControl('', [Validators.required]),
-    boardingtime: new FormControl('', [Validators.required]),
-    creatingby: new FormControl('', [Validators.required]),
   })
 
   sendProduct() {

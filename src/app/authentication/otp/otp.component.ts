@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
@@ -70,3 +70,62 @@ export class OtpComponent implements OnInit, OnDestroy {
   }
 
 }
+
+// import { Component, OnDestroy, OnInit } from '@angular/core';
+// import { AuthService } from 'src/app/services/auth.service';
+// import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+// import { Router } from '@angular/router';
+
+// @Component({
+//   selector: 'team-center-otp',
+//   templateUrl: './otp.component.html',
+//   styleUrls: ['./otp.component.scss']
+// })
+// export class OtpComponent implements OnInit, OnDestroy {
+//   email: any = localStorage.getItem('email');
+//   tempcode: any = localStorage.getItem('scode');
+//   myerrmsg: any = '';
+//   otpForm: FormGroup;
+
+//   constructor(private service: AuthService, private router: Router, private fb: FormBuilder) {
+//     this.otpForm = this.fb.group({
+//       otp: this.fb.array([], [Validators.required, Validators.maxLength(1)])
+//     });
+//   }
+
+//   ngOnDestroy(): void {
+//     localStorage.removeItem('scode');
+//   }
+
+
+
+//   move(e: any, prev: any, current: any, next: any) {
+//     const length = current.value.length;
+//     const maxlength = current.getAttribute('maxlength');
+//     if (length === 1 && next) {
+//       next.focus();
+//     }
+//     if (e.key === 'Backspace' && prev) {
+//       prev.focus();
+//     }
+//   }
+
+//   verify(): void {
+//     const otpCode = this.otpForm.value.otp.join('');
+//     this.service.verifyOtp({ otp: otpCode, scode: this.tempcode }).subscribe((res: any) => {
+//       if (res.status === 1) {
+//         localStorage.setItem('token', res.token);
+//         this.router.navigate(['auth/congrats']);
+//       } else {
+//         this.myerrmsg = res.message;
+//       }
+//     });
+//   }
+
+//   resend(): void {
+//     this.service.resendOTP({ code: this.tempcode }).subscribe((res: any) => {
+//       // Handle the response if needed
+//     });
+//   }
+// }
+
