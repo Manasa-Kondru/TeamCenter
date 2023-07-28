@@ -68,7 +68,7 @@ export class ProductdetailComponent {
   //Displaying documents
 
   async displayDocs(search?: any, search_v?: any) {
-    this.allData = await this.getDoc();
+    this.allData = await this.getDoc(); // we get promise from getdoc ,so await retruns value of promise
     let docs: any = this.allData["text"];
     if (search === true)
       docs = docs.filter((ele: any) => { return ((ele.document_type).toLowerCase()).includes((search_v).toLowerCase()) });
@@ -100,7 +100,7 @@ export class ProductdetailComponent {
   }
 
   //downloading file
-  
+
   fetch_file(docid: any) {
     this.service.file_retrieve(docid).subscribe(
       (res: any) => {
