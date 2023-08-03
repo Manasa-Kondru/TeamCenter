@@ -15,7 +15,7 @@ import { MatPaginator } from '@angular/material/paginator';
 export class ProjectdataComponent {
 
   allData: any = [];
-  displayedColumns: string[] = ['clientid', 'client_name', 'on_boarding_time', 'no_of_products',' '];
+  displayedColumns: string[] = ['clientid', 'client_name', 'on_boarding_time', 'no_of_products', ' '];
   dataSource: any;
 
   @ViewChild(MatPaginator)
@@ -43,8 +43,9 @@ export class ProjectdataComponent {
   }
 
   getClient() {
+    let token= localStorage.getItem('token');
     return new Promise((resolve: any) => {
-      this.service.clientData().subscribe((res: any) => {
+      this.service.clientData(token).subscribe((res: any) => {
         resolve(res.data);
       })
     })

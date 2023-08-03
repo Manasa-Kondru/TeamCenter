@@ -25,8 +25,8 @@ export class AddProductComponent {
   sendProduct() {
     let url: any = this.router.url.split('/');
     let obj: any = { "product_name": this.pname, "onBoarding_time": this.boardtime, "created_By": this.createdby };
-
-    this.service.productSender(parseInt(url[3]), obj).subscribe((res: any) => {
+    let token:any =localStorage.getItem('token');
+    this.service.productSender(parseInt(url[3]), obj,token).subscribe((res: any) => {
       if (res.status === 1) {
         this.dialogRef.close();
       }

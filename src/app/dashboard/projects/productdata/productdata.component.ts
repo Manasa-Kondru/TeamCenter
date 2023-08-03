@@ -98,7 +98,8 @@ export class ProductdataComponent implements OnInit {
 
   private async displayProducts(id: any): Promise<void> {
     try {
-      const res: any = await this.service.productData(id).toPromise();
+      let token:any=localStorage.getItem('token');
+      const res: any = await this.service.productData(id,token).toPromise();
       this.allData = res.status === 1 ? res.products : [];
       this.dataSource.data = this.allData;
       this.dataSource.filterPredicate = (data, filter: string) =>

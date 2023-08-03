@@ -1,4 +1,5 @@
-<!-- <mat-toolbar class="hidden-icon " style="height:5%; background: #121432 !important;">  <mat-icon  class="text-white">menu</mat-icon></mat-toolbar> -->
+<!-- <mat-toolbar class="hidden-icon " style="height:5%; background: #121432 !important;">
+     <mat-icon  class="text-white">menu</mat-icon></mat-toolbar> -->
 <mat-sidenav-container class="example-container bg-info">
 
     <mat-sidenav mode="side" [opened]=isDrawerOpened class="bg-primary mdrawer mx-0 px-0" #drawer>
@@ -9,7 +10,6 @@
         </div>
         <div class="text-center text-white px-1 py-3">
             <p><b>{{userinfo.user_name | titlecase}}<br>{{userinfo.role|titlecase}}<br>{{userinfo.email}}</b></p>
-
         </div>
 
         <div class="d-flex flex-column">
@@ -50,7 +50,7 @@
                 style="overflow-y: scroll;height: 98vh;border:15px solid white;border-radius: 4%;">
                 <h3 class="recent text-primary text-center ">Recents</h3>
                 <div class="ln "></div>
-                <div *ngFor="let r of recents" class="flex-shrink-1 ">
+                <div *ngFor="let r of recents$ | async" class="flex-shrink-1 ">
                     <small> {{r.data}}</small><br>
                     <b>FileName:</b> <small> {{r.filename}}</small><br>
                     <b>Version:</b> <small> {{r.version}}</small><br>

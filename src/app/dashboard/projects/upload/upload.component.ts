@@ -26,7 +26,8 @@ export class UploadComponent {
   submit() {
     this.formData.append('document_type', this.doc_type);
     this.formData.append('version', this._version);
-    this.service.sendDoc(this.clientid, this.productid, this.formData).subscribe((res: any) => {
+    let token:any=localStorage.getItem('token');
+    this.service.sendDoc(this.clientid, this.productid, this.formData,token).subscribe((res: any) => {
       if (res.status == 1) {
         this.dialogRef.close();
       }

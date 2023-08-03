@@ -34,7 +34,8 @@ export class UsersComponent implements OnInit {
 
   getUser() {
     return new Promise((resolve: any) => {
-      this.service.userData().subscribe((res: any) => {
+      let token:any=localStorage.getItem('token');
+      this.service.userData(token).subscribe((res: any) => {
         if (res.status == 1)
           resolve(res.users);
         else

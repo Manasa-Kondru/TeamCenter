@@ -50,7 +50,7 @@
 //     });
 
 //   }
- 
+
 //   onPhotoSelected(event: any) {
 //     this.formData = new FormData();
 //     this.formData.append('photo', event.target.files[0]);
@@ -81,7 +81,7 @@ export class AddUserComponent {
     private _snackBar: MatSnackBar,
     private fb: FormBuilder
   )
-  
+
   {
     this.addUser = this.fb.group({
       username: ['', Validators.required],
@@ -92,16 +92,17 @@ export class AddUserComponent {
 
   sendUser() {
     const { username, role, email } = this.addUser.value;
+    let token:any=localStorage.getItem('token');
     this.formData.append('name', username);
     this.formData.append('Role', role);
     this.formData.append('email', email);
     this.formData.append('user_type', this.utype);
 
-    this.service.userSender(this.formData).subscribe(
+    this.service.userSender(this.formData,token).subscribe(
       (res: any) => {
         if (res.status === 1) {
           this._snackBar.open(res.message, 'Close', {
-            duration: 3000,
+            duration: 200,
           });
           this.dialogRef.close();
         } else {

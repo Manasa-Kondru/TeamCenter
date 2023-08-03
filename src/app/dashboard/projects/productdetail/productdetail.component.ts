@@ -15,7 +15,8 @@ export class ProductdetailComponent {
 
 
   callFun() {
-    this.service.download().subscribe((res: any) => {
+    let token:any=localStorage.getItem('token');
+    this.service.download(token).subscribe((res: any) => {
 
     })
   }
@@ -57,7 +58,8 @@ export class ProductdetailComponent {
   // Displaying name of the product
 
   displayProduct(id: any): void {
-    this.service.productData(id).subscribe((res: any) => {
+    let token:any=localStorage.getItem('token');
+    this.service.productData(id,token).subscribe((res: any) => {
       if (res.status == 1) {
         this.data = res.products.filter((el: any) => { return parseInt(el.product_id) == parseInt(this.url[4]) });
       }
@@ -84,7 +86,8 @@ export class ProductdetailComponent {
 
   getDoc() {
     return new Promise((resolve: any) => {
-      this.service.getDocData(this.clientid, this.productid).subscribe((res: any) => {
+      let token:any=localStorage.getItem('token');
+      this.service.getDocData(this.clientid, this.productid,token).subscribe((res: any) => {
         if (res.status == 1) {
           resolve(res.data);
         }
@@ -102,7 +105,8 @@ export class ProductdetailComponent {
   //downloading file
 
   fetch_file(docid: any) {
-    this.service.file_retrieve(docid).subscribe(
+    let token:any=localStorage.getItem('token');
+    this.service.file_retrieve(docid,token).subscribe(
       (res: any) => {
         let fileName = res.headers.get('Content-Disposition')?.split(';')[1].split('=')[1];
         console.log(res.headers.get('Content-Disposition'))

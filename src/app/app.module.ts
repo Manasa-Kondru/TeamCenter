@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { matmodules } from '../material/material.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 
 
@@ -23,6 +24,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     BrowserAnimationsModule,
     HttpClientModule,
     ...matmodules,
+    HighchartsChartModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable

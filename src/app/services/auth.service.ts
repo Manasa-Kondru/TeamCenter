@@ -8,9 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
 
   constructor(private httpClient: HttpClient) { }
-  base_url = "http://192.168.100.13:5000";
-
-  token: any = 'Bearer' + ' ' + localStorage.getItem("token");
+  base_url = "http://192.168.100.13:3000";
 
   verifyLogin(emailid: any) {
     return this.httpClient.post(`${this.base_url}/api/otp/send`, { email: emailid });
@@ -22,63 +20,76 @@ export class AuthService {
 
   }
 
-  userData() {
-    return this.httpClient.get(`${this.base_url}/api/users`, { headers: { Authorization: this.token } })
+  userData(t:any) {
+    let token:any =`Bearer ${t}`
+    return this.httpClient.get(`${this.base_url}/api/users`, { headers: { Authorization: token } })
   }
 
   resendOTP(scode_value: any) {
     return this.httpClient.post(`${this.base_url}/api/otp/resend`, scode_value);
   }
 
-  clientData() {
-    return this.httpClient.get(`${this.base_url}/api/clients`, { headers: { Authorization: this.token } })
+  clientData(t:any) {
+    let token:any =`Bearer ${t}`
+    return this.httpClient.get(`${this.base_url}/api/clients`, { headers: { Authorization: token } })
   }
 
-  productData(id: any) {
-    return this.httpClient.get(`${this.base_url}/api/products/${id}`, { headers: { Authorization: this.token } })
-  }
-
-  userSender(obj: any) {
-    return this.httpClient.post(`${this.base_url}/api/addUser`, obj, { headers: { Authorization: this.token } });
-  }
-
-  clientSender(obj: any) {
-    return this.httpClient.post(`${this.base_url}/api/clients/add-client`, obj, { headers: { Authorization: this.token } });
-  }
-
-
-  productSender(id: any, obj: any) {
-    return this.httpClient.post(`${this.base_url}/api/products/${id}/add-product`, obj, { headers: { Authorization: this.token } });
-  }
-
-  getDocData(cid:any,pid:any) {
-    return this.httpClient.get(`${this.base_url}/api/documents/${cid}/${pid}`, { headers: { Authorization: this.token } })
-  }
-
-getNavInfo()
+  recents(t:any)
 {
-  return this.httpClient.get(`${this.base_url}/api/users-details`, { headers: { Authorization: this.token } })
+  let token:any =`Bearer ${t}`
+  return this.httpClient.get(`${this.base_url}/api/documents/recents`, { headers: { Authorization: token } })
+
 }
 
-download()
+  productData(id: any,t:any) {
+    let token:any =`Bearer ${t}`
+    return this.httpClient.get(`${this.base_url}/api/products/${id}`, { headers: { Authorization: token } })
+  }
+
+  userSender(obj: any,t:any) {
+    let token:any =`Bearer ${t}`
+    return this.httpClient.post(`${this.base_url}/api/addUser`, obj, { headers: { Authorization: token } });
+  }
+
+  clientSender(obj: any,t:any) {
+    let token:any =`Bearer ${t}`
+    return this.httpClient.post(`${this.base_url}/api/clients/add-client`, obj, { headers: { Authorization: token } });
+  }
+
+
+  productSender(id: any, obj: any,t:any) {
+    let token:any =`Bearer ${t}`
+    return this.httpClient.post(`${this.base_url}/api/products/${id}/add-product`, obj, { headers: { Authorization: token } });
+  }
+
+  getDocData(cid:any,pid:any,t:any) {
+    let token:any =`Bearer ${t}`
+    return this.httpClient.get(`${this.base_url}/api/documents/${cid}/${pid}`, { headers: { Authorization: token } })
+  }
+
+getNavInfo(t:any)
 {
-  return this.httpClient.get(`${this.base_url}/api/documents/firmware/1_1_test11.zip`, { headers: { Authorization: this.token } })
+  let token:any =`Bearer ${t}`
+  return this.httpClient.get(`${this.base_url}/api/users-details`, { headers: { Authorization: token } })
 }
 
-sendDoc(cid: any,pid:any, obj: any)
+download(t:any)
 {
-  return this.httpClient.post(`${this.base_url}/api/documents/${cid}/${pid}/upload-docs`, obj, { headers: { Authorization: this.token } });
+  let token:any =`Bearer ${t}`
+  return this.httpClient.get(`${this.base_url}/api/documents/firmware/1_1_test11.zip`, { headers: { Authorization:token } })
 }
 
-file_retrieve(docid:any)
+sendDoc(cid: any,pid:any, obj: any,t:any)
 {
-  return this.httpClient.get(`${this.base_url}/api/documents/docs/${docid}/download`, { headers: { Authorization: this.token },observe: 'response',responseType: 'blob' })
+  let token:any =`Bearer ${t}`
+  return this.httpClient.post(`${this.base_url}/api/documents/${cid}/${pid}/upload-docs`, obj, { headers: { Authorization: token } });
 }
 
-recents()
+file_retrieve(docid:any,t:any)
 {
-  return this.httpClient.get(`${this.base_url}/api/documents/recents`, { headers: { Authorization: this.token } })
- 
+  let token:any =`Bearer ${t}`
+  return this.httpClient.get(`${this.base_url}/api/documents/docs/${docid}/download`, { headers: { Authorization: token },observe: 'response',responseType: 'blob' })
 }
+
 
 }
